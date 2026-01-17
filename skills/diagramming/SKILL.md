@@ -1,7 +1,6 @@
 ---
 name: diagramming
 description: Create professional diagrams using Mermaid or DOT/Graphviz. Mermaid for flowcharts, sequences, classes, ER, Gantt, architecture with semantic coloring and WCAG AA accessibility. DOT/Graphviz for pure network graphs, semantic webs, and maximum layout control.
-allowed-tools: Read, Write, Edit
 ---
 
 # Diagramming Skill

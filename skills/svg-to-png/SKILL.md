@@ -1,7 +1,6 @@
 ---
 name: svg-to-png
 description: Convert SVG files to high-quality PNG images using headless browser rendering. Provides security-hardened conversion with path validation and resource limits.
-allowed-tools: Bash, Read, Write
 ---
 
 # SVG to PNG Converter Skill
