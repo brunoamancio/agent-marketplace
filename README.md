@@ -160,7 +160,3 @@ MIT - See [LICENSE](LICENSE) file for details.
 ## Contributing
 
 Issues and pull requests welcome! Whether you want to improve existing skills or contribute new ones.
-
----
-
-**🛡️ Security-hardened • 🎨 Professional • 📚 Well-documented**
