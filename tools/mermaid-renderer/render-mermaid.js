@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-const puppeteer = require('puppeteer');
 const fs = require('fs').promises;
 const path = require('path');
+const { validateOutputPath } = require('../lib/security');
+const { launchSecureBrowser, createSecurePage } = require('../lib/puppeteer-helper');
 
 /**
  * Renders a Mermaid diagram to SVG
@@ -17,13 +18,13 @@ async function renderMermaidToSVG(diagramCode, options = {}) {
     height = 1080
   } = options;
 
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
-  });
+  const browser = await launchSecureBrowser({ timeout: 30000 });
 
   try {
-    const page = await browser.newPage();
+    const page = await createSecurePage(browser, {
+      pageTimeout: 15000,
+      navTimeout: 30000
+    });
     await page.setViewport({ width, height });
 
     const html = `
@@ -117,9 +118,12 @@ ${diagramCode}
  * Save SVG to file
  */
 async function saveSVG(svgContent, outputPath) {
-  await fs.mkdir(path.dirname(outputPath), { recursive: true });
-  await fs.writeFile(outputPath, svgContent, 'utf-8');
-  return outputPath;
+  // Validate output path to prevent path traversal attacks
+  const validatedPath = validateOutputPath(outputPath, process.cwd());
+
+  await fs.mkdir(path.dirname(validatedPath), { recursive: true });
+  await fs.writeFile(validatedPath, svgContent, 'utf-8');
+  return validatedPath;
 }
 
 /**
@@ -137,13 +141,13 @@ async function renderMermaidToPNG(diagramCode, options = {}) {
     scale = 4
   } = options;
 
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
-  });
+  const browser = await launchSecureBrowser({ timeout: 30000 });
 
   try {
-    const page = await browser.newPage();
+    const page = await createSecurePage(browser, {
+      pageTimeout: 15000,
+      navTimeout: 30000
+    });
     await page.setViewport({ width, height, deviceScaleFactor: scale });
 
     const html = `
@@ -236,9 +240,12 @@ ${diagramCode}
  * Save PNG to file
  */
 async function savePNG(pngBuffer, outputPath) {
-  await fs.mkdir(path.dirname(outputPath), { recursive: true });
-  await fs.writeFile(outputPath, pngBuffer);
-  return outputPath;
+  // Validate output path to prevent path traversal attacks
+  const validatedPath = validateOutputPath(outputPath, process.cwd());
+
+  await fs.mkdir(path.dirname(validatedPath), { recursive: true });
+  await fs.writeFile(validatedPath, pngBuffer);
+  return validatedPath;
 }
 
 // CLI interface
