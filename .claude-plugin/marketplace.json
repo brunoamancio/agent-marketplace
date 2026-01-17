@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "svg-to-png",
-      "source": ".",
+      "source": "skills/svg-to-png",
       "description": "Convert SVG files to high-quality PNG images using headless browser rendering with security hardening",
       "version": "1.0.0",
       "author": {
@@ -35,14 +35,11 @@
     },
     {
       "name": "diagramming",
-      "source": ".",
+      "source": "skills/diagramming",
       "description": "Create professional Mermaid and DOT/Graphviz diagrams with semantic coloring, accessibility compliance, and secure image rendering",
       "version": "1.0.0",
       "author": {
         "name": "th3b0y"
-      },
-      "dependencies": {
-        "svg-to-png": "^1.0.0"
       },
       "keywords": [
         "diagrams",
@@ -67,15 +64,11 @@
     },
     {
       "name": "markdown-editor",
-      "source": ".",
+      "source": "skills/markdown-editor",
       "description": "Professional markdown editing with automatic diagram-to-image conversion, formatting enforcement, and accessibility improvements",
       "version": "1.0.0",
       "author": {
         "name": "th3b0y"
-      },
-      "dependencies": {
-        "diagramming": "^1.0.0",
-        "svg-to-png": "^1.0.0"
       },
       "keywords": [
         "markdown",
