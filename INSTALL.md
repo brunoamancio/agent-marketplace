@@ -38,7 +38,7 @@ The rendering tools require Node.js dependencies:
 
 ```bash
 # Navigate to the installed plugin location
-cd ~/.claude/plugins/diagramming-*/skills/diagramming/mermaid
+cd $CLAUDE_CONFIG_DIR/plugins/diagramming-*/skills/diagramming/mermaid
 npm install
 
 cd ../dot
@@ -71,21 +71,21 @@ cd agent-marketplace
 
 ```bash
 # Copy the diagramming skill
-cp -r skills/diagramming ~/.claude/skills/
+cp -r skills/diagramming $CLAUDE_CONFIG_DIR/skills/
 
 # Or create a symlink for development
-ln -s $(pwd)/skills/diagramming ~/.claude/skills/diagramming
+ln -s $(pwd)/skills/diagramming $CLAUDE_CONFIG_DIR/skills/diagramming
 ```
 
 ### Step 3: Install Dependencies
 
 ```bash
 # Install Mermaid renderer dependencies
-cd ~/.claude/skills/diagramming/mermaid
+cd $CLAUDE_CONFIG_DIR/skills/diagramming/mermaid
 npm install
 
 # Install DOT renderer dependencies
-cd ~/.claude/skills/diagramming/dot
+cd $CLAUDE_CONFIG_DIR/skills/diagramming/dot
 npm install
 ```
 
@@ -144,14 +144,14 @@ Team members will be prompted to install the marketplace and plugin when they st
 If you plan to export diagrams to PNG/SVG:
 
 1. The tools are located in:
-   - `~/.claude/skills/diagramming/mermaid/` (Mermaid → PNG)
-   - `~/.claude/skills/diagramming/dot/` (DOT → SVG)
+   - `$CLAUDE_CONFIG_DIR/skills/diagramming/mermaid/` (Mermaid → PNG)
+   - `$CLAUDE_CONFIG_DIR/skills/diagramming/dot/` (DOT → SVG)
 
 2. You can create shell aliases for convenience:
    ```bash
    # Add to ~/.bashrc or ~/.zshrc
-   alias mermaid-export="node ~/.claude/skills/diagramming/mermaid/process-document.js"
-   alias dot-export="node ~/.claude/skills/diagramming/dot/process-document.js"
+   alias mermaid-export="node $CLAUDE_CONFIG_DIR/skills/diagramming/mermaid/process-document.js"
+   alias dot-export="node $CLAUDE_CONFIG_DIR/skills/diagramming/dot/process-document.js"
    ```
 
 3. Usage examples:
@@ -174,7 +174,7 @@ If you plan to export diagrams to PNG/SVG:
 **Solutions:**
 1. Verify skill is in the correct location:
    ```bash
-   ls -la ~/.claude/skills/diagramming/SKILL.md
+   ls -la $CLAUDE_CONFIG_DIR/skills/diagramming/SKILL.md
    ```
 2. Restart Claude Code
 3. Check Claude Code logs for errors
@@ -186,7 +186,7 @@ If you plan to export diagrams to PNG/SVG:
 **Solutions:**
 1. Ensure dependencies are installed:
    ```bash
-   cd ~/.claude/skills/diagramming/mermaid
+   cd $CLAUDE_CONFIG_DIR/skills/diagramming/mermaid
    npm install
    ```
 2. Puppeteer will download Chromium automatically
@@ -202,12 +202,12 @@ If you plan to export diagrams to PNG/SVG:
 **Solutions:**
 1. Make scripts executable:
    ```bash
-   chmod +x ~/.claude/skills/diagramming/mermaid/*.js
-   chmod +x ~/.claude/skills/diagramming/dot/*.js
+   chmod +x $CLAUDE_CONFIG_DIR/skills/diagramming/mermaid/*.js
+   chmod +x $CLAUDE_CONFIG_DIR/skills/diagramming/dot/*.js
    ```
 2. Or always run with `node`:
    ```bash
-   node ~/.claude/skills/diagramming/mermaid/render-mermaid.js ...
+   node $CLAUDE_CONFIG_DIR/skills/diagramming/mermaid/render-mermaid.js ...
    ```
 
 ### npm audit Warnings
@@ -237,7 +237,7 @@ cd agent-marketplace
 git pull origin main
 
 # Re-copy or re-link
-cp -r skills/diagramming ~/.claude/skills/
+cp -r skills/diagramming $CLAUDE_CONFIG_DIR/skills/
 # Re-install dependencies if needed
 ```
 
@@ -254,7 +254,7 @@ cp -r skills/diagramming ~/.claude/skills/
 ### Manual Removal
 
 ```bash
-rm -rf ~/.claude/skills/diagramming
+rm -rf $CLAUDE_CONFIG_DIR/skills/diagramming
 ```
 
 ---

@@ -49,7 +49,7 @@ This skill requires the **svg-to-png** skill for PNG conversion functionality.
 
 **Before using PNG export**, check if svg-to-png is installed:
 ```bash
-ls ~/.claude/skills/svg-to-png/svg-to-png.js
+ls $CLAUDE_CONFIG_DIR/skills/svg-to-png/svg-to-png.js
 ```
 
 **If not installed:**
@@ -58,7 +58,7 @@ ls ~/.claude/skills/svg-to-png/svg-to-png.js
 3. If user agrees, run:
    ```bash
    /plugin install svg-to-png@agent-marketplace
-   cd ~/.claude/skills/svg-to-png && npm install
+   cd $CLAUDE_CONFIG_DIR/skills/svg-to-png && npm install
    ```
 
 **Note:** SVG export works without svg-to-png. Only PNG conversion requires it.
@@ -396,13 +396,13 @@ When you need detailed syntax or patterns beyond this entry point:
 **For Mermaid diagrams** (` ```mermaid ` blocks):
 
 ```bash
-node ~/.claude/tools/mermaid-renderer/process-document.js <document-path> --verbose
+node $CLAUDE_CONFIG_DIR/tools/mermaid-renderer/process-document.js <document-path> --verbose
 ```
 
 **For DOT/Graphviz diagrams** (` ```dot `, ` ```graphviz `, ` ```gv ` blocks):
 
 ```bash
-node ~/.claude/tools/dot-renderer/process-document.js <document-path> --verbose
+node $CLAUDE_CONFIG_DIR/tools/dot-renderer/process-document.js <document-path> --verbose
 ```
 
 ### Result Structure

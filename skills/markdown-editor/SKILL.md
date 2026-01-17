@@ -16,10 +16,10 @@ This skill requires two other skills:
 **Before using this skill**, check if required skills are installed:
 ```bash
 # Check for diagramming skill
-ls ~/.claude/skills/diagramming/SKILL.md
+ls $CLAUDE_CONFIG_DIR/skills/diagramming/SKILL.md
 
 # Check for svg-to-png skill
-ls ~/.claude/skills/svg-to-png/svg-to-png.js
+ls $CLAUDE_CONFIG_DIR/skills/svg-to-png/svg-to-png.js
 ```
 
 **If diagramming is not installed:**
@@ -28,8 +28,8 @@ ls ~/.claude/skills/svg-to-png/svg-to-png.js
 3. If user agrees, run:
    ```bash
    /plugin install diagramming@agent-marketplace
-   cd ~/.claude/skills/diagramming/mermaid && npm install
-   cd ~/.claude/skills/diagramming/dot && npm install
+   cd $CLAUDE_CONFIG_DIR/skills/diagramming/mermaid && npm install
+   cd $CLAUDE_CONFIG_DIR/skills/diagramming/dot && npm install
    ```
 
 **If svg-to-png is not installed:**
@@ -38,7 +38,7 @@ ls ~/.claude/skills/svg-to-png/svg-to-png.js
 3. If user agrees, run:
    ```bash
    /plugin install svg-to-png@agent-marketplace
-   cd ~/.claude/skills/svg-to-png && npm install
+   cd $CLAUDE_CONFIG_DIR/skills/svg-to-png && npm install
    ```
 
 **Note:** The diagramming skill will automatically inform you if svg-to-png is needed for PNG conversion.
@@ -74,7 +74,7 @@ echo "flowchart LR
     A[Start] --> B[End]" > temp.mmd
 
 # Step 2: Render directly to PNG
-node ~/.claude/skills/diagramming/mermaid/render-mermaid.js temp.mmd diagram.png
+node $CLAUDE_CONFIG_DIR/skills/diagramming/mermaid/render-mermaid.js temp.mmd diagram.png
 
 # Step 3: Clean up
 rm temp.mmd
@@ -92,7 +92,7 @@ echo "digraph G {
 }" > temp.dot
 
 # Step 2: Render directly to PNG
-node ~/.claude/skills/diagramming/dot/render-dot.js temp.dot diagram.png
+node $CLAUDE_CONFIG_DIR/skills/diagramming/dot/render-dot.js temp.dot diagram.png
 
 # Step 3: Clean up
 rm temp.dot
@@ -111,7 +111,7 @@ While PNG is recommended for maximum compatibility, SVG can be used when explici
 
 ```bash
 # Render to SVG (default format)
-node ~/.claude/skills/diagramming/mermaid/render-mermaid.js diagram.mmd diagram.svg
+node $CLAUDE_CONFIG_DIR/skills/diagramming/mermaid/render-mermaid.js diagram.mmd diagram.svg
 
 # Reference in markdown
 # ![Diagram description](./diagram.svg)
@@ -121,7 +121,7 @@ node ~/.claude/skills/diagramming/mermaid/render-mermaid.js diagram.mmd diagram.
 
 ```bash
 # Render to SVG (default format)
-node ~/.claude/skills/diagramming/dot/render-dot.js graph.dot graph.svg
+node $CLAUDE_CONFIG_DIR/skills/diagramming/dot/render-dot.js graph.dot graph.svg
 
 # Reference in markdown
 # ![Diagram description](./graph.svg)

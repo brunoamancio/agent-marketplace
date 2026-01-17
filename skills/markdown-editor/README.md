@@ -25,7 +25,7 @@ Professional markdown editing with automatic diagram-to-image conversion for max
 
 ```bash
 # Copy skill to Claude Code skills directory
-cp -r skills/markdown-editor ~/.claude/skills/
+cp -r skills/markdown-editor $CLAUDE_CONFIG_DIR/skills/
 ```
 
 **Note:** This skill depends on the `diagramming` skill's rendering tools for image generation.
@@ -49,7 +49,7 @@ When you need images in markdown files, this skill generates PNG images from dia
 echo "flowchart LR
     A[Start] --> B[Process] --> C[End]" > temp.mmd
 
-node ~/.claude/skills/diagramming/mermaid/render-mermaid.js temp.mmd ./images/flowchart.png
+node $CLAUDE_CONFIG_DIR/skills/diagramming/mermaid/render-mermaid.js temp.mmd ./images/flowchart.png
 rm temp.mmd
 ```
 
@@ -141,7 +141,7 @@ flowchart LR
 EOF
 
 # 2. Render directly to PNG
-node ~/.claude/skills/diagramming/mermaid/render-mermaid.js diagram.mmd ./images/diagram.png
+node $CLAUDE_CONFIG_DIR/skills/diagramming/mermaid/render-mermaid.js diagram.mmd ./images/diagram.png
 
 # 3. Clean up
 rm diagram.mmd
@@ -158,7 +158,7 @@ digraph G {
 EOF
 
 # 2. Render directly to PNG
-node ~/.claude/skills/diagramming/dot/render-dot.js graph.dot ./images/graph.png
+node $CLAUDE_CONFIG_DIR/skills/diagramming/dot/render-dot.js graph.dot ./images/graph.png
 
 # 3. Clean up
 rm graph.dot
@@ -169,13 +169,13 @@ rm graph.dot
 **Mermaid to SVG:**
 ```bash
 # Render to SVG (default)
-node ~/.claude/skills/diagramming/mermaid/render-mermaid.js diagram.mmd ./images/diagram.svg
+node $CLAUDE_CONFIG_DIR/skills/diagramming/mermaid/render-mermaid.js diagram.mmd ./images/diagram.svg
 ```
 
 **Graphviz to SVG:**
 ```bash
 # Render to SVG (default)
-node ~/.claude/skills/diagramming/dot/render-dot.js graph.dot ./images/graph.svg
+node $CLAUDE_CONFIG_DIR/skills/diagramming/dot/render-dot.js graph.dot ./images/graph.svg
 ```
 
 **When to use:** User explicitly requests SVG, vector graphics needed, or file size optimization.

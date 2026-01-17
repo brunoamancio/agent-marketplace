@@ -68,16 +68,16 @@ Convert SVG files to high-quality PNG images using headless browser rendering.
 **Installation:**
 ```bash
 /plugin install svg-to-png@agent-marketplace
-cd ~/.claude/skills/svg-to-png && npm install
+cd $CLAUDE_CONFIG_DIR/skills/svg-to-png && npm install
 ```
 
 **Quick usage:**
 ```bash
 # Convert single file
-node ~/.claude/skills/svg-to-png/svg-to-png.js input.svg output.png
+node $CLAUDE_CONFIG_DIR/skills/svg-to-png/svg-to-png.js input.svg output.png
 
 # Convert all SVG files in directory
-node ~/.claude/skills/svg-to-png/svg-to-png.js ./images/
+node $CLAUDE_CONFIG_DIR/skills/svg-to-png/svg-to-png.js ./images/
 ```
 
 **Use cases:**
@@ -131,11 +131,11 @@ If you prefer to install skills manually:
 git clone https://github.com/brunoamancio/agent-marketplace.git
 
 # Copy a skill to Claude Code
-cp -r agent-marketplace/skills/diagramming ~/.claude/skills/
+cp -r agent-marketplace/skills/diagramming $CLAUDE_CONFIG_DIR/skills/
 
 # Install dependencies (if required by the skill)
-cd ~/.claude/skills/diagramming/mermaid && npm install
-cd ~/.claude/skills/diagramming/dot && npm install
+cd $CLAUDE_CONFIG_DIR/skills/diagramming/mermaid && npm install
+cd $CLAUDE_CONFIG_DIR/skills/diagramming/dot && npm install
 ```
 
 ## Requirements

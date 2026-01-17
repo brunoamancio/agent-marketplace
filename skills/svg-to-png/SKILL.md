@@ -13,13 +13,13 @@ Convert SVG files to PNG images with high-resolution output.
 
 ```bash
 # Convert single file
-node ~/.claude/skills/svg-to-png/svg-to-png.js input.svg output.png
+node $CLAUDE_CONFIG_DIR/skills/svg-to-png/svg-to-png.js input.svg output.png
 
 # Convert all SVG files in a directory
-node ~/.claude/skills/svg-to-png/svg-to-png.js ./images/
+node $CLAUDE_CONFIG_DIR/skills/svg-to-png/svg-to-png.js ./images/
 
 # Auto-detect output filename
-node ~/.claude/skills/svg-to-png/svg-to-png.js diagram.svg
+node $CLAUDE_CONFIG_DIR/skills/svg-to-png/svg-to-png.js diagram.svg
 # Creates: diagram.png
 ```
 
@@ -33,10 +33,10 @@ node ~/.claude/skills/svg-to-png/svg-to-png.js diagram.svg
 **For new diagrams**, use direct PNG rendering:
 ```bash
 # Mermaid: render directly to PNG
-node ~/.claude/skills/diagramming/mermaid/render-mermaid.js diagram.mmd diagram.png
+node $CLAUDE_CONFIG_DIR/skills/diagramming/mermaid/render-mermaid.js diagram.mmd diagram.png
 
 # Graphviz: render directly to PNG
-node ~/.claude/skills/diagramming/dot/render-dot.js graph.dot graph.png
+node $CLAUDE_CONFIG_DIR/skills/diagramming/dot/render-dot.js graph.dot graph.png
 ```
 
 ## Output Quality
@@ -50,14 +50,14 @@ node ~/.claude/skills/diagramming/dot/render-dot.js graph.dot graph.png
 ### Converting Existing SVG Files
 
 ```bash
-node ~/.claude/skills/svg-to-png/svg-to-png.js existing-diagram.svg ./images/diagram.png
+node $CLAUDE_CONFIG_DIR/skills/svg-to-png/svg-to-png.js existing-diagram.svg ./images/diagram.png
 ```
 
 ### Batch Conversion
 
 ```bash
 # Convert all diagrams in ./diagrams/ folder
-node ~/.claude/skills/svg-to-png/svg-to-png.js ./diagrams/
+node $CLAUDE_CONFIG_DIR/skills/svg-to-png/svg-to-png.js ./diagrams/
 
 # Creates PNG for each SVG:
 # ./diagrams/diagram1.svg -> ./diagrams/diagram1.png
@@ -67,7 +67,7 @@ node ~/.claude/skills/svg-to-png/svg-to-png.js ./diagrams/
 ### Presentation Materials
 
 ```bash
-node ~/.claude/skills/svg-to-png/svg-to-png.js flowchart.svg presentation/flowchart.png
+node $CLAUDE_CONFIG_DIR/skills/svg-to-png/svg-to-png.js flowchart.svg presentation/flowchart.png
 ```
 
 ## See Also
