@@ -43,6 +43,28 @@ Mermaid/DOT diagrams are:
 
 ---
 
+## Dependencies
+
+This skill requires the **svg-to-png** skill for PNG conversion functionality.
+
+**Before using PNG export**, check if svg-to-png is installed:
+```bash
+ls ~/.claude/skills/svg-to-png/svg-to-png.js
+```
+
+**If not installed:**
+1. Inform the user: "PNG export requires the svg-to-png skill"
+2. Ask: "Would you like me to install svg-to-png? (Recommended)"
+3. If user agrees, run:
+   ```bash
+   /plugin install svg-to-png@agent-marketplace
+   cd ~/.claude/skills/svg-to-png && npm install
+   ```
+
+**Note:** SVG export works without svg-to-png. Only PNG conversion requires it.
+
+---
+
 ## Diagram Type Router
 
 Load **only ONE guide** per request. Match user intent to the most specific keywords:

@@ -1,12 +1,49 @@
 ---
 name: markdown-editor
 description: Professional markdown editing with diagram-to-image conversion. Generates PNG images from Mermaid/Graphviz diagrams for maximum compatibility with markdown renderers.
-allowed-tools: Read, Write, Edit, Grep, Glob, Bash
 ---
 
 # Markdown Editor Skill
 
 Enforce consistent markdown formatting and handle diagram image generation when editing `.md` files.
+
+## Dependencies
+
+This skill requires two other skills:
+- **diagramming** - For creating Mermaid and DOT/Graphviz diagrams
+- **svg-to-png** - For PNG conversion (only if diagramming needs it)
+
+**Before using this skill**, check if required skills are installed:
+```bash
+# Check for diagramming skill
+ls ~/.claude/skills/diagramming/SKILL.md
+
+# Check for svg-to-png skill
+ls ~/.claude/skills/svg-to-png/svg-to-png.js
+```
+
+**If diagramming is not installed:**
+1. Inform the user: "This skill requires the diagramming skill for diagram creation"
+2. Ask: "Would you like me to install diagramming? (Required)"
+3. If user agrees, run:
+   ```bash
+   /plugin install diagramming@agent-marketplace
+   cd ~/.claude/skills/diagramming/mermaid && npm install
+   cd ~/.claude/skills/diagramming/dot && npm install
+   ```
+
+**If svg-to-png is not installed:**
+1. Inform the user: "PNG export requires the svg-to-png skill"
+2. Ask: "Would you like me to install svg-to-png? (Recommended for PNG support)"
+3. If user agrees, run:
+   ```bash
+   /plugin install svg-to-png@agent-marketplace
+   cd ~/.claude/skills/svg-to-png && npm install
+   ```
+
+**Note:** The diagramming skill will automatically inform you if svg-to-png is needed for PNG conversion.
+
+---
 
 ## Image Generation for Diagrams
 
