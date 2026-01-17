@@ -2,6 +2,9 @@
 
 Professional diagram generation using Mermaid and DOT/Graphviz with semantic coloring, accessibility compliance, and secure rendering tools.
 
+[![Security](https://img.shields.io/badge/security-hardened-brightgreen)](../../SECURITY.md)
+[![Vulnerabilities](https://img.shields.io/badge/npm%20audit-0%20vulnerabilities-brightgreen)](../../SECURITY.md)
+
 ## Installation
 
 ### Via Marketplace (Recommended)

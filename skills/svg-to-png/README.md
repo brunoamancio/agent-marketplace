@@ -2,6 +2,9 @@
 
 Convert SVG files to high-quality PNG images using headless browser rendering.
 
+[![Security](https://img.shields.io/badge/security-hardened-brightgreen)](../../SECURITY.md)
+[![Vulnerabilities](https://img.shields.io/badge/npm%20audit-0%20vulnerabilities-brightgreen)](../../SECURITY.md)
+
 **Note:** For diagram workflows, Mermaid and Graphviz can now render directly to PNG. This skill is useful for converting existing SVG files or when you need additional control over PNG generation.
 
 ## Installation
