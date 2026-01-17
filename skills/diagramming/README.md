@@ -1,224 +1,218 @@
-# Mermaid Diagram Documentation
+# Diagramming Skill
 
-## Inspired by Kurt Cagle's Approach to Visualization
+Professional diagram generation using Mermaid and DOT/Graphviz with semantic coloring, accessibility compliance, and secure rendering tools.
 
-This comprehensive documentation covers Mermaid diagram creation, following the principles and techniques employed by **Kurt Cagle**, a leading expert in linked data, semantic web technologies, and data visualization.
+## Installation
 
----
+```bash
+# Copy skill to Claude Code skills directory
+cp -r skills/diagramming ~/.claude/skills/
 
-## Claude Skill Integration
+# Install dependencies for rendering tools
+cd ~/.claude/skills/diagramming/mermaid && npm install
+cd ~/.claude/skills/diagramming/dot && npm install
+```
 
-This documentation suite is optimized for use as a **Claude Code skill**. The skill uses intelligent routing to load only the relevant guide for each diagram type, minimizing token usage while providing comprehensive coverage.
+## What's Included
 
-### Skill Entry Point
+### Comprehensive Diagram Support
 
-| File | Purpose |
-|------|---------|
-| [CLAUDE.md](./CLAUDE.md) | **Skill entry point** - Routing logic, core colors, ELK config, guide loading instructions |
+- **Flowcharts** - Process flows, decision trees, algorithms
+- **Sequence Diagrams** - API interactions, service communication
+- **Class Diagrams** - OOP design, code architecture
+- **State Diagrams** - State machines, workflow lifecycles
+- **ER Diagrams** - Database schemas, data models
+- **Gantt Charts** - Project timelines, schedules
+- **Architecture Diagrams** - System design, cloud infrastructure, deployment
+- **DOT/Graphviz** - Network graphs, semantic webs, ontologies
+- **And more** - Pie charts, mindmaps, journey maps, timelines, C4, sankey
 
-### How the Skill Works
+### Secure Rendering Tools
 
-1. **CLAUDE.md** loads first with core philosophy, color palette, and routing logic
-2. Based on user request, the skill loads **only the relevant guide**
-3. Semantic colors and ELK preferences are always available (inline in CLAUDE.md)
-4. Detailed syntax and patterns come from individual guides on-demand
+All tools have been security-hardened with fixes for:
+- ✅ Command injection vulnerabilities
+- ✅ Path traversal attacks
+- ✅ Resource exhaustion (DoS)
+- ✅ CDN supply chain risks
 
----
+See [SECURITY.md](../../SECURITY.md) for details.
 
-## About This Collection
+### Export Capabilities
 
-This documentation suite was created to provide:
+- **Mermaid → PNG** - Render Mermaid diagrams to PNG images
+- **DOT → SVG** - Render Graphviz diagrams to SVG images
+- **Document processing** - Process entire documents with multiple diagrams
+- **Re-rendering** - Update diagrams in-place when source changes
 
-1. **Kurt Cagle's diagramming philosophy** - How a leading ontologist approaches visualization
-2. **Complete diagram type references** - Syntax, examples, and best practices for all types
-3. **Color themes and styling** - Including Cagle's semantic color palette
-4. **Scenario-based guidance** - Match your use case to the optimal diagram type
-5. **LLM-optimized structure** - Guides organized for efficient skill loading
+## Quick Start
 
----
+### Create a Diagram
 
-## Document Index
+Just describe what you want to Claude:
 
-### Core Guides
+```
+"Create a flowchart showing the user login process"
+"Draw a sequence diagram for the checkout API flow"
+"Generate an architecture diagram for a microservices system"
+```
 
-| File | Description |
-|------|-------------|
-| [00-KURT-CAGLE-STYLE-GUIDE.md](./00-KURT-CAGLE-STYLE-GUIDE.md) | Kurt Cagle's approach to Mermaid diagrams, including his semantic coloring and ELK layout preferences |
-| [01-DIAGRAM-TYPES-OVERVIEW.md](./01-DIAGRAM-TYPES-OVERVIEW.md) | Complete catalog of all Mermaid diagram types with quick reference |
-| [10-USE-CASE-SCENARIOS.md](./10-USE-CASE-SCENARIOS.md) | Scenario-to-diagram mapping for choosing the right visualization |
+Claude will automatically invoke the diagramming skill and create the appropriate diagram type.
 
-### Diagram Type Guides
+### Export Diagrams to Images
 
-| File | Description |
-|------|-------------|
-| [02-FLOWCHART-GUIDE.md](./02-FLOWCHART-GUIDE.md) | Comprehensive flowchart syntax, shapes, styling, and ELK layout |
-| [03-SEQUENCE-DIAGRAM-GUIDE.md](./03-SEQUENCE-DIAGRAM-GUIDE.md) | Sequence diagram syntax for API and interaction documentation |
-| [04-CLASS-DIAGRAM-GUIDE.md](./04-CLASS-DIAGRAM-GUIDE.md) | Class diagrams for OOP design and code architecture |
-| [05-STATE-DIAGRAM-GUIDE.md](./05-STATE-DIAGRAM-GUIDE.md) | State machines and behavioral workflow modeling |
-| [06-ER-DIAGRAM-GUIDE.md](./06-ER-DIAGRAM-GUIDE.md) | Entity-relationship diagrams for database design |
-| [07-GANTT-GUIDE.md](./07-GANTT-GUIDE.md) | Project planning with Gantt charts |
-| [08-OTHER-DIAGRAMS-GUIDE.md](./08-OTHER-DIAGRAMS-GUIDE.md) | Pie, mindmap, journey, timeline, C4, sankey, and more |
+After creating diagrams in your document:
 
-### Styling & Color System
+```bash
+# Export Mermaid diagrams to PNG
+node ~/.claude/skills/diagramming/mermaid/process-document.js README.md --verbose
 
-| File | Description |
-|------|-------------|
-| [09-THEMES-AND-STYLING.md](./09-THEMES-AND-STYLING.md) | Complete theming reference including Cagle's color palette |
-| [11-CAGLE-COLOR-SYSTEM.md](./11-CAGLE-COLOR-SYSTEM.md) | **Unified color system** based on color theory, WCAG accessibility, and semantic meaning |
-| [16-CONFIGURATION-REFERENCE.md](./16-CONFIGURATION-REFERENCE.md) | **Complete configuration options** for all diagram types, ELK layout, and theme variables |
+# Export DOT diagrams to SVG
+node ~/.claude/skills/diagramming/dot/process-document.js README.md --verbose
+```
 
-### Architecture & Design Guides
+See [20-MERMAID-EXPORT.md](20-MERMAID-EXPORT.md) and [21-DOT-EXPORT.md](21-DOT-EXPORT.md) for complete export workflows.
 
-| File | Description |
-|------|-------------|
-| [12-SOLUTION-ARCHITECTURE-GUIDE.md](./12-SOLUTION-ARCHITECTURE-GUIDE.md) | System context, layered architecture, component diagrams, platform architecture |
-| [13-DATA-FLOW-PATTERNS-GUIDE.md](./13-DATA-FLOW-PATTERNS-GUIDE.md) | Async flows, API sequences, event-driven, streaming, batch processing |
-| [14-DEPLOYMENT-ARCHITECTURE-GUIDE.md](./14-DEPLOYMENT-ARCHITECTURE-GUIDE.md) | Kubernetes, cloud infrastructure, CI/CD pipelines, container architecture |
-| [15-TECHNICAL-DESIGN-PATTERNS-GUIDE.md](./15-TECHNICAL-DESIGN-PATTERNS-GUIDE.md) | Design patterns (creational, structural, behavioral), DDD, API design |
+## Directory Structure
 
----
+```
+diagramming/
+├── SKILL.md                          # Main skill entry point
+├── README.md                         # This file
+│
+├── Diagram Type Guides
+├── 02-FLOWCHART-GUIDE.md            # Process flows, decision trees
+├── 03-SEQUENCE-DIAGRAM-GUIDE.md     # API interactions, service calls
+├── 04-CLASS-DIAGRAM-GUIDE.md        # OOP design, code structure
+├── 05-STATE-DIAGRAM-GUIDE.md        # State machines, workflows
+├── 06-ER-DIAGRAM-GUIDE.md           # Database schemas
+├── 07-GANTT-GUIDE.md                # Project timelines
+├── 08-OTHER-DIAGRAMS-GUIDE.md       # Pie, mindmap, journey, timeline, etc.
+│
+├── Styling & Configuration
+├── 09-STYLING-GUIDE.md              # Cagle color palette, themes, styling
+├── 16-CONFIGURATION-REFERENCE.md    # ELK layout, all config options
+│
+├── Architecture & Patterns
+├── 10-USE-CASE-SCENARIOS.md         # Diagram type selection guide
+├── 12-SOLUTION-ARCHITECTURE-GUIDE.md # System architecture patterns
+├── 13-DATA-FLOW-PATTERNS-GUIDE.md   # Data flows, async, events
+├── 14-DEPLOYMENT-ARCHITECTURE-GUIDE.md # Cloud, K8s, CI/CD
+├── 15-TECHNICAL-DESIGN-PATTERNS-GUIDE.md # Design patterns, DDD
+│
+├── Specialized Diagrams
+├── 17-LINKED-DATA-GUIDE.md          # RDF, ontologies, SHACL, SPARQL
+├── 18-PROPERTY-GRAPH-GUIDE.md       # Neo4j, Cypher, graph databases
+├── 19-DOT-GRAPHVIZ-GUIDE.md         # DOT/Graphviz for network graphs
+│
+├── Export Tools
+├── 20-MERMAID-EXPORT.md             # Mermaid rendering workflow
+├── 21-DOT-EXPORT.md                 # DOT rendering workflow
+│
+└── Rendering Tools (self-contained)
+    ├── mermaid/                      # Mermaid renderer
+    │   ├── render-mermaid.js        # Single diagram → SVG/PNG
+    │   ├── process-document.js      # Process full documents
+    │   ├── svg-to-png.js           # SVG → PNG conversion
+    │   ├── md-to-pdf.js            # Markdown → PDF
+    │   └── package.json
+    ├── dot/                          # DOT/Graphviz renderer
+    │   ├── render-dot.js           # Single diagram → SVG
+    │   ├── process-document.js     # Process full documents
+    │   └── package.json
+    ├── lib/                          # Shared security utilities
+    │   ├── security.js             # Path validation, sanitization
+    │   └── puppeteer-helper.js     # Secure browser launch
+    └── markdown-export/              # Markdown tools
+        └── convert.js
+```
 
-## Key Takeaways from Kurt Cagle
+## Key Features
 
-### 1. Use ELK Layout for Complex Graphs
+### The Cagle Color System
 
-```mermaid
+Based on Kurt Cagle's semantic visualization approach:
+
+| Type | Fill | Stroke | Use Case |
+|------|------|--------|----------|
+| Infrastructure | `#E3F2FD` | `#1565C0` | Cloud, platforms, networks |
+| Service | `#E8F5E9` | `#2E7D32` | APIs, microservices |
+| Data | `#FFF8E1` | `#F57F17` | Databases, storage |
+| User/Actor | `#F3E5F5` | `#7B1FA2` | People, roles |
+| Process | `#E1F5FE` | `#0277BD` | Workflows, actions |
+| Security | `#E0F2F1` | `#00695C` | Auth, encryption |
+
+All colors are WCAG AA compliant for accessibility.
+
+### ELK Layout for Complex Diagrams
+
+For diagrams with >10 nodes or dense connections:
+
+```yaml
 ---
 config:
   layout: elk
+  elk:
+    mergeEdges: false
+    nodePlacementStrategy: BRANDES_KOEPF
 ---
-flowchart LR
-    A --> B --> C
 ```
 
-ELK (Eclipse Layout Kernel) provides better layout for complex diagrams, especially knowledge graphs with many relationships.
+### Accessibility First
 
-### 2. Prefer Left-to-Right (LR) for Semantic Graphs
+- `accTitle` and `accDescr` for screen readers
+- WCAG AA contrast ratios
+- Semantic color meanings
+- Alternative text for all diagrams
 
-This mirrors the Subject-Predicate-Object structure of RDF triples:
+## Quick Reference
 
-```mermaid
-flowchart LR
-    Subject --> |predicate| Object
-```
-
-### 3. Color-Code by Entity Type
-
-Cagle's semantic color palette:
-
-| Entity Type | Color | Hex |
-|-------------|-------|-----|
-| Company/Organization | Light Green | `#90EE90` |
-| Person/Agent | Light Blue | `#ADD8E6` |
-| Literal/Value | Lemon Chiffon | `#FFFACD` |
-| Class/Type | Plum | `#DDA0DD` |
-| Property | Light Pink | `#FFB6C1` |
-| Instance | Khaki | `#F0E68C` |
-
-### 4. Use classDef for Consistent Styling
-
-```mermaid
-flowchart LR
-    classDef company fill:#90EE90,stroke:#000,stroke-width:2px
-    classDef person fill:#ADD8E6,stroke:#000,stroke-width:2px
-
-    SmallCo["SmallCo Inc"]:::company
-    Jane["Jane Doe"]:::person
-
-    SmallCo -->|employs| Jane
-```
-
-### 5. The Cagle Color System (WCAG Compliant)
-
-A unified, accessibility-compliant color system based on color theory:
-
-| Semantic Type | Fill | Stroke | Use Case |
-|---------------|------|--------|----------|
-| **Infrastructure** | `#E3F2FD` | `#1565C0` | Cloud, platforms, networks |
-| **Service** | `#E8F5E9` | `#2E7D32` | APIs, microservices |
-| **Data** | `#FFF8E1` | `#F57F17` | Databases, storage |
-| **User/Actor** | `#F3E5F5` | `#7B1FA2` | People, roles |
-| **Process** | `#E1F5FE` | `#0277BD` | Workflows, actions |
-| **Security** | `#E0F2F1` | `#00695C` | Auth, encryption |
-
-See [11-CAGLE-COLOR-SYSTEM.md](./11-CAGLE-COLOR-SYSTEM.md) for the complete palette.
-
-### 6. Preserve Namespaces in Comments
-
-```mermaid
-flowchart LR
-    %% @prefix company: <http://example.org/company#>
-    %% @prefix person: <http://example.org/person#>
-
-    Company:SmallCo --> Person:JaneDoe
-```
-
----
-
-## Quick Diagram Selection Guide
+### When to Use Each Diagram Type
 
 | Need to Show | Use This | Guide |
 |--------------|----------|-------|
-| Process/decision flow | Flowchart | [02](./02-FLOWCHART-GUIDE.md) |
-| API/service interactions | Sequence Diagram | [03](./03-SEQUENCE-DIAGRAM-GUIDE.md), [13](./13-DATA-FLOW-PATTERNS-GUIDE.md) |
-| Database schema | ER Diagram | [06](./06-ER-DIAGRAM-GUIDE.md) |
-| Object-oriented design | Class Diagram | [04](./04-CLASS-DIAGRAM-GUIDE.md), [15](./15-TECHNICAL-DESIGN-PATTERNS-GUIDE.md) |
-| Design patterns | Class + Sequence | [15](./15-TECHNICAL-DESIGN-PATTERNS-GUIDE.md) |
-| Workflow states | State Diagram | [05](./05-STATE-DIAGRAM-GUIDE.md) |
-| Project schedule | Gantt Chart | [07](./07-GANTT-GUIDE.md) |
-| Data proportions | Pie Chart | [08](./08-OTHER-DIAGRAMS-GUIDE.md) |
-| Brainstorming/hierarchy | Mindmap | [08](./08-OTHER-DIAGRAMS-GUIDE.md) |
-| User experience | User Journey | [08](./08-OTHER-DIAGRAMS-GUIDE.md) |
-| System architecture | C4 + Flowchart | [12](./12-SOLUTION-ARCHITECTURE-GUIDE.md) |
-| Cloud infrastructure | Flowchart + ELK | [14](./14-DEPLOYMENT-ARCHITECTURE-GUIDE.md) |
-| Kubernetes/containers | Flowchart | [14](./14-DEPLOYMENT-ARCHITECTURE-GUIDE.md) |
-| CI/CD pipelines | Flowchart + Sequence | [14](./14-DEPLOYMENT-ARCHITECTURE-GUIDE.md) |
-| Data flows/ETL | Sequence + Flowchart | [13](./13-DATA-FLOW-PATTERNS-GUIDE.md) |
-| Event-driven systems | Sequence + State | [13](./13-DATA-FLOW-PATTERNS-GUIDE.md) |
-| Git branching | GitGraph | [08](./08-OTHER-DIAGRAMS-GUIDE.md) |
-| Knowledge graph | Flowchart + ELK (Cagle style) | [00](./00-KURT-CAGLE-STYLE-GUIDE.md) |
-| Configuration options | All diagram config | [16](./16-CONFIGURATION-REFERENCE.md) |
+| Process/decision flow | Flowchart | [02](02-FLOWCHART-GUIDE.md) |
+| API interactions | Sequence Diagram | [03](03-SEQUENCE-DIAGRAM-GUIDE.md) |
+| Database schema | ER Diagram | [06](06-ER-DIAGRAM-GUIDE.md) |
+| OOP design | Class Diagram | [04](04-CLASS-DIAGRAM-GUIDE.md) |
+| Workflow states | State Diagram | [05](05-STATE-DIAGRAM-GUIDE.md) |
+| Project schedule | Gantt Chart | [07](07-GANTT-GUIDE.md) |
+| System architecture | Flowchart + ELK | [12](12-SOLUTION-ARCHITECTURE-GUIDE.md) |
+| Cloud infrastructure | Flowchart | [14](14-DEPLOYMENT-ARCHITECTURE-GUIDE.md) |
+| Data flows | Sequence | [13](13-DATA-FLOW-PATTERNS-GUIDE.md) |
+| Knowledge graphs | Flowchart LR + ELK | [17](17-LINKED-DATA-GUIDE.md) |
+| Pure networks | DOT/Graphviz | [19](19-DOT-GRAPHVIZ-GUIDE.md) |
 
----
+See [10-USE-CASE-SCENARIOS.md](10-USE-CASE-SCENARIOS.md) for comprehensive scenario mapping.
 
 ## Resources
 
-### Kurt Cagle's Publications
+### Kurt Cagle's Work
+
+This skill is inspired by Kurt Cagle's approach to data visualization:
 
 - [The Ontologist (Substack)](https://ontologist.substack.com/)
-- [The Cagle Report](https://thecaglereport.com/)
-- [Kurt Cagle on LinkedIn](https://www.linkedin.com/in/kurtcagle/)
 - [RDF, Graphs and Mermaid Diagrams](https://www.linkedin.com/pulse/rdf-graphs-mermaid-diagrams-kurt-cagle-jqrac)
 - [Ask Any (Technical) Mermaid](https://kurtcagle.wpcomstaging.com/2023/01/06/ask-any-technical-mermaid/)
 
-### Official Mermaid Resources
+### Official Documentation
 
-- [Mermaid Official Documentation](https://mermaid.js.org/)
+- [Mermaid Documentation](https://mermaid.js.org/)
 - [Mermaid Live Editor](https://mermaid.live/)
-- [Mermaid GitHub Repository](https://github.com/mermaid-js/mermaid)
-- [Mermaid Chart](https://www.mermaidchart.com/)
+- [Graphviz Documentation](https://graphviz.org/documentation/)
+
+## Security
+
+All rendering tools have been hardened against common vulnerabilities. See [../../SECURITY.md](../../SECURITY.md) for:
+
+- Security improvements and fixes
+- Vulnerability testing procedures
+- Dependency audit results
+
+## License
+
+Follows the same license as the original claude-config repository (MIT).
 
 ---
 
-## Version Information
-
-- **Mermaid Version Reference**: 10.x / 11.x
-- **ELK Layout**: Available from Mermaid 9.4+
-- **Documentation Created**: December 2025
-
----
-
-## Contributing
-
-This documentation is designed to be a living resource. To extend:
-
-1. Add new diagram examples to appropriate guide files
-2. Update use case scenarios as new diagram types emerge
-3. Document additional styling techniques and themes
-4. Share knowledge graph visualization patterns
-
----
-
-*"Mermaid is quietly entering into tool chains in the data architecture and semantic stacks, including in commercial products, and is becoming an integral part of tools such as Atlassian Confluence, GitHub, and WordPress."*
-
+*"Mermaid is quietly entering into tool chains in the data architecture and semantic stacks."*
 — Kurt Cagle
