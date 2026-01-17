@@ -2,6 +2,7 @@
 const { graphviz } = require('node-graphviz');
 const fs = require('fs').promises;
 const path = require('path');
+const { validateOutputPath } = require('../lib/security');
 
 /**
  * Available layout engines
@@ -103,9 +104,12 @@ function makeResponsive(svg) {
  * Save output to file
  */
 async function saveOutput(content, outputPath) {
-  await fs.mkdir(path.dirname(outputPath), { recursive: true });
-  await fs.writeFile(outputPath, content, 'utf-8');
-  return outputPath;
+  // Validate output path to prevent path traversal attacks
+  const validatedPath = validateOutputPath(outputPath, process.cwd());
+
+  await fs.mkdir(path.dirname(validatedPath), { recursive: true });
+  await fs.writeFile(validatedPath, content, 'utf-8');
+  return validatedPath;
 }
 
 // CLI interface
