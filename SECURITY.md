@@ -10,7 +10,7 @@ This fork has undergone comprehensive security hardening to address vulnerabilit
 
 ### 1. Command Injection Protection (CRITICAL)
 
-**Location:** `tools/mermaid-renderer/md-to-pdf.js`
+**Location:** `skills/diagramming/mermaid/md-to-pdf.js`
 
 **Issue:** The original code used `execSync()` with string interpolation, allowing arbitrary command execution via malicious file paths.
 
@@ -29,11 +29,11 @@ execFileSync('pandoc', [mdPath, '-o', htmlPath, ...], { cwd: mdDir })
 ### 2. Path Traversal Protection
 
 **Locations:**
-- `tools/dot-renderer/render-dot.js`
-- `tools/mermaid-renderer/svg-to-png.js`
-- `tools/mermaid-renderer/render-mermaid.js`
-- `tools/mermaid-renderer/process-document.js`
-- `tools/dot-renderer/process-document.js`
+- `skills/diagramming/dot/render-dot.js`
+- `skills/svg-to-png/svg-to-png.js`
+- `skills/diagramming/mermaid/render-mermaid.js`
+- `skills/diagramming/mermaid/process-document.js`
+- `skills/diagramming/dot/process-document.js`
 
 **Issue:** User-provided file paths were not validated, allowing writes to arbitrary filesystem locations (e.g., `../../etc/passwd`).
 
@@ -49,9 +49,9 @@ const validatedPath = validateOutputPath(outputPath, process.cwd());
 ### 3. Resource Exhaustion Prevention
 
 **Locations:**
-- `tools/mermaid-renderer/render-mermaid.js`
-- `tools/mermaid-renderer/svg-to-png.js`
-- `tools/mermaid-renderer/md-to-pdf.js`
+- `skills/diagramming/mermaid/render-mermaid.js`
+- `skills/svg-to-png/svg-to-png.js`
+- `skills/diagramming/mermaid/md-to-pdf.js`
 
 **Issue:** Puppeteer instances launched without timeouts or resource limits could be exploited for DoS attacks.
 
@@ -70,7 +70,7 @@ const page = await createSecurePage(browser, {
 
 ### 4. CDN Dependency Elimination
 
-**Location:** `tools/mermaid-renderer/render-mermaid.js`
+**Location:** `skills/diagramming/mermaid/render-mermaid.js`
 
 **Issue:** Mermaid library loaded from CDN at runtime, creating supply chain attack risk.
 
@@ -86,7 +86,7 @@ const mermaidJs = await fs.readFile(mermaidPath, 'utf-8');
 
 ## Security Utilities
 
-### Path Validation (`tools/lib/security.js`)
+### Path Validation (`skills/diagramming/lib/security.js`, `skills/svg-to-png/lib/security.js`)
 
 ```javascript
 validateOutputPath(outputPath, allowedBaseDir)
@@ -94,7 +94,7 @@ validateOutputPath(outputPath, allowedBaseDir)
 
 Validates that output paths stay within safe boundaries. Throws error if path traversal is detected.
 
-### Secure Puppeteer Helper (`tools/lib/puppeteer-helper.js`)
+### Secure Puppeteer Helper (`skills/diagramming/lib/puppeteer-helper.js`, `skills/svg-to-png/lib/puppeteer-helper.js`)
 
 ```javascript
 launchSecureBrowser(options)  // Launch with timeouts and resource limits
@@ -106,11 +106,12 @@ renderWithTimeout(renderFn, timeoutMs)  // Wrap operations with timeout
 
 All npm dependencies have been audited:
 
-- `tools/mermaid-renderer`: **0 vulnerabilities**
-- `tools/dot-renderer`: **0 vulnerabilities**
-- `tools/markdown-export`: **0 vulnerabilities**
+- `skills/diagramming/mermaid`: **0 vulnerabilities**
+- `skills/diagramming/dot`: **0 vulnerabilities**
+- `skills/diagramming/markdown-export`: **0 vulnerabilities**
+- `skills/svg-to-png`: **0 vulnerabilities**
 
-Run `npm audit` in each tool directory to verify.
+Run `npm audit` in each skill directory to verify.
 
 ## Security Testing
 
@@ -118,30 +119,30 @@ Run `npm audit` in each tool directory to verify.
 
 ```bash
 # Should fail with security error:
-./render-dot.js diagram.dot ../../etc/test.svg
-./render-mermaid.js diagram.mmd ../../../tmp/test.svg
+node skills/diagramming/dot/render-dot.js diagram.dot ../../etc/test.svg
+node skills/diagramming/mermaid/render-mermaid.js diagram.mmd ../../../tmp/test.svg
 ```
 
 ### Testing for Command Injection
 
 ```bash
 # Should fail or sanitize (no command execution):
-./md-to-pdf.js "test; rm -rf /" output.pdf
-./md-to-pdf.js "$(whoami)" output.pdf
+node skills/diagramming/mermaid/md-to-pdf.js "test; rm -rf /" output.pdf
+node skills/diagramming/mermaid/md-to-pdf.js "$(whoami)" output.pdf
 ```
 
 ### Testing Resource Limits
 
 ```bash
 # Should timeout gracefully with complex diagrams:
-timeout 45s ./render-mermaid.js huge-diagram.mmd output.svg
+timeout 45s node skills/diagramming/mermaid/render-mermaid.js huge-diagram.mmd output.svg
 ```
 
 ## Remaining Considerations
 
 ### 1. GraphViz Dependency (Low Priority)
 
-`tools/dot-renderer` uses `node-graphviz@0.1.1` (last updated 2016). Consider migrating to more actively maintained alternatives:
+`skills/diagramming/dot` uses `node-graphviz@0.1.1` (last updated 2016). Consider migrating to more actively maintained alternatives:
 
 - `@aduh95/viz.js`
 - `@hpcc-js/wasm`
@@ -150,7 +151,7 @@ timeout 45s ./render-mermaid.js huge-diagram.mmd output.svg
 
 For additional security when processing untrusted input, consider:
 
-- Running tools in Docker containers
+- Running skills in Docker containers
 - Using restricted user accounts
 - Implementing file system quotas
 
@@ -172,6 +173,12 @@ If you discover a security vulnerability in this fork, please:
 4. Allow time for fix before public disclosure
 
 ## Security Audit History
+
+- **2026-01-18**: Updated all dependencies to latest versions
+  - Puppeteer: ^24.35.0
+  - Mermaid: ^11.12.2
+  - glob: ^13.0.0
+  - All npm packages audited (0 vulnerabilities)
 
 - **2026-01-17**: Comprehensive security review and fixes applied
   - Fixed command injection vulnerability

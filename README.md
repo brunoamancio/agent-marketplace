@@ -58,6 +58,7 @@ Professional diagram generation with Mermaid and DOT/Graphviz support.
 
 Convert SVG files to high-quality PNG images using headless browser rendering.
 
+[![Security](https://img.shields.io/badge/security-hardened-brightgreen)](SECURITY.md)
 [![NPM Audit](https://github.com/brunoamancio/agent-marketplace/actions/workflows/npm-audit.yml/badge.svg?job=audit-svg-to-png)](https://github.com/brunoamancio/agent-marketplace/actions/workflows/npm-audit.yml)
 
 **Features:**
