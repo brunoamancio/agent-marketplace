@@ -26,7 +26,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: skills/diagramming/mermaid
-        run: npm ci
+        run: npm install
 
       - name: Run npm audit
         working-directory: skills/diagramming/mermaid
@@ -40,7 +40,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: skills/diagramming/dot
-        run: npm ci
+        run: npm install
 
       - name: Run npm audit
         working-directory: skills/diagramming/dot
@@ -54,7 +54,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: skills/diagramming/markdown-export
-        run: npm ci
+        run: npm install
 
       - name: Run npm audit
         working-directory: skills/diagramming/markdown-export
@@ -68,7 +68,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: skills/svg-to-png
-        run: npm ci
+        run: npm install
 
       - name: Run npm audit
         working-directory: skills/svg-to-png
