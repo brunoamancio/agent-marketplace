@@ -50,8 +50,6 @@ Professional diagram generation with Mermaid and DOT/Graphviz support.
 "Generate a system architecture diagram for microservices"
 ```
 
-**Documentation:** [skills/diagramming/README.md](skills/diagramming/README.md)
-
 ---
 
 ### SVG to PNG
@@ -87,8 +85,6 @@ node ~/.claude/skills/svg-to-png/svg-to-png.js ./images/
 - Generate PNG images for markdown compatibility
 - Export diagrams for presentations and documentation
 - Create images for platforms that don't support SVG
-
-**Documentation:** [skills/svg-to-png/README.md](skills/svg-to-png/README.md)
 
 ---
 

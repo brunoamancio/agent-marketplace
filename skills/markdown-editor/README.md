@@ -285,7 +285,7 @@ Our deployment process includes:
 ## Related Skills
 
 - **diagramming**: For creating and styling Mermaid/Graphviz diagrams
-- See [skills/diagramming/README.md](../diagramming/README.md) for diagram types and styling
+- See [skills/diagramming/SKILL.md](../diagramming/SKILL.md) for diagram types and styling
 
 ## License
 

@@ -262,8 +262,8 @@ rm -rf ~/.claude/skills/diagramming
 ## Next Steps
 
 - Read the [README.md](README.md) for feature overview
-- Explore [skills/diagramming/README.md](skills/diagramming/README.md) for comprehensive documentation
 - Check out [SECURITY.md](SECURITY.md) for security improvements
 - Review diagram type guides in `skills/diagramming/`
+- Explore SKILL.md files in each skill directory for detailed documentation
 
 **Ready to create diagrams!** 🎨

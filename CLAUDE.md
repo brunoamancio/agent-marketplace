@@ -275,11 +275,7 @@ ls -la diagrams/test/
    - Add to diagram types table
    - Update directory structure if needed
 
-4. **Update skill README**
-   - Add to `skills/diagramming/README.md`
-   - Update "What's Included" section
-
-5. **Test routing**
+4. **Test routing**
    - Ask Claude to create the new diagram type
    - Verify correct guide loads
    - Ensure examples work
@@ -361,7 +357,7 @@ SECURITY: [Brief description]
 
 - Security concerns → See [SECURITY.md](SECURITY.md)
 - Installation issues → See [INSTALL.md](INSTALL.md)
-- Usage questions → See [skills/diagramming/README.md](skills/diagramming/README.md)
+- Skill documentation → See SKILL.md files in each skill directory
 - Kurt Cagle's approach → See guides 09, 17-19
 
 **Remember:** This skill helps users create accessible, professional diagrams. Quality and security matter!
