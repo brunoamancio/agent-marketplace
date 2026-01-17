@@ -200,34 +200,6 @@ module.exports = { main };
 
 ---
 
-## Git Operations Safety
-
-### Prohibited Commands (Without User Approval)
-
-**NEVER use these git commands without EXPLICIT user approval:**
-- `git checkout` (files or branches)
-- `git revert`
-- `git reset`
-- `git restore`
-- `git stash`
-
-### Why This Rule Exists
-
-These commands can **destroy uncommitted work** in:
-- Rendering tools (hours of security hardening)
-- Documentation files (thousands of lines of content)
-- Configuration files
-
-### What to Do Instead
-
-1. **To fix an error:** Use Edit tool to correct the file directly
-2. **To undo changes:** Explain the situation and ASK user for approval
-3. **To restore a file:** Tell user what will be lost, wait for approval
-
-**Violation of this rule is unacceptable** - it has caused catastrophic data loss in the past.
-
----
-
 ## Testing Before Commits
 
 ### Pre-Commit Checklist
