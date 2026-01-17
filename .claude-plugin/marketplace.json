@@ -1,10 +1,10 @@
 {
-  "name": "diagramming-skills",
+  "name": "agent-marketplace",
   "owner": {
     "name": "th3b0y"
   },
   "metadata": {
-    "description": "Professional diagramming skills with security-hardened rendering tools",
+    "description": "Agent skills marketplace featuring professional tools and utilities",
     "version": "1.0.0"
   },
   "plugins": [

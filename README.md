@@ -34,20 +34,20 @@ Professional diagram generation with **security-hardened** rendering tools.
 
 ```bash
 # Add marketplace
-/plugin marketplace add th3b0y/claude-config
+/plugin marketplace add th3b0y/agent-marketplace
 
 # Install the diagramming skill
-/plugin install diagramming@diagramming-skills
+/plugin install diagramming@agent-marketplace
 ```
 
 ### Option 2: Manual Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/th3b0y/claude-config.git
+git clone https://github.com/th3b0y/agent-marketplace.git
 
 # Copy skill to Claude Code
-cp -r claude-config/skills/diagramming ~/.claude/skills/
+cp -r agent-marketplace/skills/diagramming ~/.claude/skills/
 
 # Install dependencies
 cd ~/.claude/skills/diagramming/mermaid && npm install

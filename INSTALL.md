@@ -10,12 +10,12 @@ The easiest way to install is through Claude Code's plugin marketplace system.
 
 In Claude Code, run:
 ```
-/plugin marketplace add th3b0y/claude-config
+/plugin marketplace add th3b0y/agent-marketplace
 ```
 
 Or if you have the repo locally:
 ```
-/plugin marketplace add /path/to/claude-config
+/plugin marketplace add /path/to/agent-marketplace
 ```
 
 ### Step 2: List Available Plugins
@@ -24,12 +24,12 @@ Or if you have the repo locally:
 /plugin list
 ```
 
-You should see `diagramming@diagramming-skills` in the list.
+You should see `diagramming@agent-marketplace` in the list.
 
 ### Step 3: Install the Plugin
 
 ```
-/plugin install diagramming@diagramming-skills
+/plugin install diagramming@agent-marketplace
 ```
 
 ### Step 4: Install Node Dependencies
@@ -63,8 +63,8 @@ If you prefer manual installation or want to develop/customize the skill:
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/th3b0y/claude-config.git
-cd claude-config
+git clone https://github.com/th3b0y/agent-marketplace.git
+cd agent-marketplace
 ```
 
 ### Step 2: Copy Skill to Claude Code
@@ -106,15 +106,15 @@ In your team's shared `.claude/settings.json`:
 ```json
 {
   "extraKnownMarketplaces": {
-    "diagramming-skills": {
+    "agent-marketplace": {
       "source": {
         "source": "github",
-        "repo": "th3b0y/claude-config"
+        "repo": "th3b0y/agent-marketplace"
       }
     }
   },
   "enabledPlugins": {
-    "diagramming@diagramming-skills": true
+    "diagramming@agent-marketplace": true
   }
 }
 ```
@@ -227,13 +227,13 @@ If you plan to export diagrams to PNG/SVG:
 
 ```bash
 /plugin marketplace update
-/plugin update diagramming@diagramming-skills
+/plugin update diagramming@agent-marketplace
 ```
 
 ### Manual Update
 
 ```bash
-cd claude-config
+cd agent-marketplace
 git pull origin main
 
 # Re-copy or re-link
@@ -248,7 +248,7 @@ cp -r skills/diagramming ~/.claude/skills/
 ### Via Marketplace
 
 ```
-/plugin uninstall diagramming@diagramming-skills
+/plugin uninstall diagramming@agent-marketplace
 ```
 
 ### Manual Removal
