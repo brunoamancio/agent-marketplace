@@ -38,33 +38,57 @@ async function convertSvgToPng(svgPath, pngPath) {
 }
 
 async function main() {
-  const dir = process.argv[2];
+  const arg1 = process.argv[2];
+  const arg2 = process.argv[3];
 
-  if (!dir) {
-    console.error('Usage: svg-to-png.js <directory>');
+  if (!arg1) {
+    console.error('Usage:');
+    console.error('  svg-to-png.js <input.svg> <output.png>    # Convert single file');
+    console.error('  svg-to-png.js <directory>                 # Convert all SVG files in directory');
     process.exit(1);
   }
 
-  // Validate directory path
-  const validatedDir = validateOutputPath(dir, process.cwd());
+  // Validate input path
+  const validatedPath = validateOutputPath(arg1, process.cwd());
 
-  const files = fs.readdirSync(validatedDir).filter(f => f.endsWith('.svg'));
+  // Check if it's a directory or file
+  const stats = fs.statSync(validatedPath);
 
-  for (const file of files) {
-    // Sanitize filename to prevent directory traversal in filenames
-    const sanitizedFile = path.basename(file);
-    const svgPath = path.join(validatedDir, sanitizedFile);
-    const pngPath = path.join(validatedDir, sanitizedFile.replace('.svg', '.png'));
+  if (stats.isDirectory()) {
+    // Directory mode: convert all SVG files
+    const files = fs.readdirSync(validatedPath).filter(f => f.endsWith('.svg'));
+
+    for (const file of files) {
+      // Sanitize filename to prevent directory traversal in filenames
+      const sanitizedFile = path.basename(file);
+      const svgPath = path.join(validatedPath, sanitizedFile);
+      const pngPath = path.join(validatedPath, sanitizedFile.replace('.svg', '.png'));
+
+      try {
+        await convertSvgToPng(svgPath, pngPath);
+      } catch (error) {
+        console.error(`Error converting ${sanitizedFile}:`, error.message);
+      }
+    }
+  } else {
+    // File mode: convert single file
+    const svgPath = validatedPath;
+    const pngPath = arg2 ? validateOutputPath(arg2, process.cwd()) : svgPath.replace('.svg', '.png');
 
     try {
       await convertSvgToPng(svgPath, pngPath);
     } catch (error) {
-      console.error(`Error converting ${sanitizedFile}:`, error.message);
+      console.error(`Error converting ${path.basename(svgPath)}:`, error.message);
+      process.exit(1);
     }
   }
 }
 
-main().catch(error => {
-  console.error('Error:', error.message);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch(error => {
+    console.error('Error:', error.message);
+    process.exit(1);
+  });
+}
+
+module.exports = { convertSvgToPng };
