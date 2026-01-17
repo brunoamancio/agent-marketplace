@@ -27,6 +27,10 @@ async function renderMermaidToSVG(diagramCode, options = {}) {
     });
     await page.setViewport({ width, height });
 
+    // Load Mermaid from local package instead of CDN for security
+    const mermaidPath = require.resolve('mermaid/dist/mermaid.min.js');
+    const mermaidJs = await fs.readFile(mermaidPath, 'utf-8');
+
     const html = `
       <!DOCTYPE html>
       <html>
@@ -51,12 +55,10 @@ async function renderMermaidToSVG(diagramCode, options = {}) {
 ${diagramCode}
         </pre>
 
-        <script type="module">
-          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-          import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0/dist/mermaid-layout-elk.esm.min.mjs';
-
-          mermaid.registerLayoutLoaders(elkLayouts);
-
+        <script>
+          ${mermaidJs}
+        </script>
+        <script>
           mermaid.initialize({
             startOnLoad: true,
             theme: '${theme}'
@@ -150,6 +152,10 @@ async function renderMermaidToPNG(diagramCode, options = {}) {
     });
     await page.setViewport({ width, height, deviceScaleFactor: scale });
 
+    // Load Mermaid from local package instead of CDN for security
+    const mermaidPath = require.resolve('mermaid/dist/mermaid.min.js');
+    const mermaidJs = await fs.readFile(mermaidPath, 'utf-8');
+
     const html = `
       <!DOCTYPE html>
       <html>
@@ -174,12 +180,10 @@ async function renderMermaidToPNG(diagramCode, options = {}) {
 ${diagramCode}
         </pre>
 
-        <script type="module">
-          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-          import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0/dist/mermaid-layout-elk.esm.min.mjs';
-
-          mermaid.registerLayoutLoaders(elkLayouts);
-
+        <script>
+          ${mermaidJs}
+        </script>
+        <script>
           mermaid.initialize({
             startOnLoad: true,
             theme: '${theme}'
