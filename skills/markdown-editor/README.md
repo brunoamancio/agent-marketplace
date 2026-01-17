@@ -38,7 +38,7 @@ When you need images in markdown files, this skill generates PNG images from dia
 
 **Workflow:**
 1. Create diagram (Mermaid or Graphviz)
-2. Render directly to PNG (Mermaid) or via SVG (Graphviz)
+2. Render directly to PNG (both Mermaid and Graphviz)
 3. Insert PNG reference in markdown
 4. Clean up temporary files
 
@@ -70,6 +70,12 @@ Then in markdown:
 - Platform renders Mermaid natively (GitHub, GitLab)
 - Diagrams need frequent editing
 - Keeping diagrams as editable source code
+
+**Use SVG images when:**
+- User explicitly requests SVG format
+- Vector graphics needed for scaling/zooming
+- File size optimization (SVG often smaller than PNG)
+- Working on platforms with excellent SVG support
 
 **Hybrid approach (recommended):**
 Include both the PNG and the source in a collapsible section:
@@ -151,15 +157,28 @@ digraph G {
 }
 EOF
 
-# 2. Render to SVG
-node ~/.claude/skills/diagramming/dot/render-dot.js graph.dot -o temp.svg
+# 2. Render directly to PNG
+node ~/.claude/skills/diagramming/dot/render-dot.js graph.dot ./images/graph.png
 
-# 3. Convert to PNG
-node ~/.claude/skills/diagramming/mermaid/svg-to-png.js temp.svg ./images/graph.png
-
-# 4. Clean up
-rm graph.dot temp.svg
+# 3. Clean up
+rm graph.dot
 ```
+
+### Generating SVG Images (When Requested)
+
+**Mermaid to SVG:**
+```bash
+# Render to SVG (default)
+node ~/.claude/skills/diagramming/mermaid/render-mermaid.js diagram.mmd ./images/diagram.svg
+```
+
+**Graphviz to SVG:**
+```bash
+# Render to SVG (default)
+node ~/.claude/skills/diagramming/dot/render-dot.js graph.dot ./images/graph.svg
+```
+
+**When to use:** User explicitly requests SVG, vector graphics needed, or file size optimization.
 
 ### Image Organization
 
@@ -198,9 +217,9 @@ Always provide descriptive alt text for accessibility:
 
 This skill requires the **diagramming** skill's rendering tools:
 
-- `skills/diagramming/mermaid/render-mermaid.js` - Mermaid to SVG
-- `skills/diagramming/mermaid/svg-to-png.js` - SVG to PNG conversion
-- `skills/diagramming/dot/render-dot.js` - Graphviz to SVG
+- `skills/diagramming/mermaid/render-mermaid.js` - Mermaid to SVG/PNG
+- `skills/diagramming/dot/render-dot.js` - Graphviz to SVG/PNG
+- `skills/svg-to-png/svg-to-png.js` - SVG to PNG conversion (if needed)
 
 Install the diagramming skill first:
 

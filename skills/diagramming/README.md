@@ -51,10 +51,11 @@ See [SECURITY.md](../../SECURITY.md) for details.
 
 ### Export Capabilities
 
-- **Mermaid → PNG** - Render Mermaid diagrams to PNG images
-- **DOT → SVG** - Render Graphviz diagrams to SVG images
+- **Mermaid → PNG/SVG** - Render Mermaid diagrams to PNG (default) or SVG
+- **DOT/Graphviz → PNG/SVG** - Render Graphviz diagrams to PNG (default) or SVG
 - **Document processing** - Process entire documents with multiple diagrams
 - **Re-rendering** - Update diagrams in-place when source changes
+- **Format flexibility** - PNG for compatibility, SVG when explicitly requested
 
 ## Quick Start
 
@@ -75,12 +76,22 @@ Claude will automatically invoke the diagramming skill and create the appropriat
 After creating diagrams in your document:
 
 ```bash
-# Export Mermaid diagrams to PNG
-node ~/.claude/skills/diagramming/mermaid/process-document.js README.md --verbose
+# Render single diagram to PNG (recommended for compatibility)
+node ~/.claude/skills/diagramming/mermaid/render-mermaid.js diagram.mmd output.png
+node ~/.claude/skills/diagramming/dot/render-dot.js graph.dot output.png
 
-# Export DOT diagrams to SVG
+# Render single diagram to SVG (when explicitly requested)
+node ~/.claude/skills/diagramming/mermaid/render-mermaid.js diagram.mmd output.svg
+node ~/.claude/skills/diagramming/dot/render-dot.js graph.dot output.svg
+
+# Process entire document (batch export)
+node ~/.claude/skills/diagramming/mermaid/process-document.js README.md --verbose
 node ~/.claude/skills/diagramming/dot/process-document.js README.md --verbose
 ```
+
+**Format selection:**
+- Use **PNG** by default for maximum compatibility
+- Use **SVG** when user explicitly requests it
 
 See [20-MERMAID-EXPORT.md](20-MERMAID-EXPORT.md) and [21-DOT-EXPORT.md](21-DOT-EXPORT.md) for complete export workflows.
 
@@ -124,7 +135,6 @@ diagramming/
     ├── mermaid/                      # Mermaid renderer
     │   ├── render-mermaid.js        # Single diagram → SVG/PNG
     │   ├── process-document.js      # Process full documents
-    │   ├── svg-to-png.js           # SVG → PNG conversion
     │   ├── md-to-pdf.js            # Markdown → PDF
     │   └── package.json
     ├── dot/                          # DOT/Graphviz renderer
@@ -137,6 +147,8 @@ diagramming/
     └── markdown-export/              # Markdown tools
         └── convert.js
 ```
+
+**Note:** SVG to PNG conversion is now provided by the separate `svg-to-png` skill, which this skill depends on.
 
 ## Key Features
 

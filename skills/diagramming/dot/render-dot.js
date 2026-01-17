@@ -12,7 +12,7 @@ const LAYOUT_ENGINES = ['dot', 'circo', 'fdp', 'neato', 'osage', 'patchwork', 't
 /**
  * Available output formats
  */
-const OUTPUT_FORMATS = ['svg', 'dot', 'json', 'dot_json', 'xdot_json'];
+const OUTPUT_FORMATS = ['svg', 'png', 'dot', 'json', 'dot_json', 'xdot_json'];
 
 /**
  * Renders a DOT diagram to SVG (or other format)
@@ -103,12 +103,15 @@ function makeResponsive(svg) {
 /**
  * Save output to file
  */
-async function saveOutput(content, outputPath) {
+async function saveOutput(content, outputPath, format = 'svg') {
   // Validate output path to prevent path traversal attacks
   const validatedPath = validateOutputPath(outputPath, process.cwd());
 
   await fs.mkdir(path.dirname(validatedPath), { recursive: true });
-  await fs.writeFile(validatedPath, content, 'utf-8');
+
+  // PNG is binary, others are text
+  const encoding = format === 'png' ? null : 'utf-8';
+  await fs.writeFile(validatedPath, content, encoding);
   return validatedPath;
 }
 
@@ -117,13 +120,13 @@ async function main() {
   const args = process.argv.slice(2);
 
   if (args.length < 1) {
-    console.log('Usage: render-dot.js <dot-code-or-file> [output.svg] [--layout=<engine>] [--format=<format>]');
+    console.log('Usage: render-dot.js <dot-code-or-file> [output.svg|output.png] [--layout=<engine>] [--format=<format>]');
     console.log('');
     console.log('Options:');
     console.log(`  --layout=${LAYOUT_ENGINES.join('|')}`);
     console.log('           (default: dot)');
     console.log(`  --format=${OUTPUT_FORMATS.join('|')}`);
-    console.log('           (default: svg)');
+    console.log('           (default: auto-detected from extension, or svg)');
     console.log('  --stdin    Read DOT code from stdin');
     console.log('');
     console.log('Layout Engines:');
@@ -137,8 +140,9 @@ async function main() {
     console.log('');
     console.log('Examples:');
     console.log('  render-dot.js diagram.dot output.svg');
+    console.log('  render-dot.js diagram.dot output.png');
     console.log('  render-dot.js diagram.dot output.svg --layout=neato');
-    console.log('  echo "digraph { A -> B }" | render-dot.js --stdin output.svg');
+    console.log('  echo "digraph { A -> B }" | render-dot.js --stdin output.png');
     process.exit(1);
   }
 
@@ -187,6 +191,20 @@ async function main() {
     outputPath = 'diagram.svg';
   }
 
+  // Auto-detect format from file extension if not explicitly specified
+  if (!flags.some(f => f.startsWith('--format='))) {
+    const ext = path.extname(outputPath).toLowerCase();
+    if (ext === '.png') {
+      format = 'png';
+    } else if (ext === '.svg') {
+      format = 'svg';
+    } else if (ext === '.json') {
+      format = 'json';
+    } else if (ext === '.dot' || ext === '.gv') {
+      format = 'dot';
+    }
+  }
+
   // Ensure correct extension for format
   if (format !== 'svg' && outputPath.endsWith('.svg')) {
     outputPath = outputPath.replace('.svg', `.${format === 'dot_json' || format === 'xdot_json' ? 'json' : format}`);
@@ -196,7 +214,7 @@ async function main() {
 
   try {
     const output = await renderDotToSVG(dotCode, { layout, format });
-    await saveOutput(output, outputPath);
+    await saveOutput(output, outputPath, format);
     console.log(outputPath);
   } catch (err) {
     console.error('Error:', err.message);

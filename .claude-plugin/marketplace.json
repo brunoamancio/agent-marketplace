@@ -9,12 +9,40 @@
   },
   "plugins": [
     {
+      "name": "svg-to-png",
+      "source": ".",
+      "description": "Convert SVG files to high-quality PNG images using headless browser rendering with security hardening",
+      "version": "1.0.0",
+      "author": {
+        "name": "th3b0y"
+      },
+      "keywords": [
+        "svg",
+        "png",
+        "convert",
+        "image",
+        "puppeteer",
+        "rendering"
+      ],
+      "category": "productivity",
+      "tags": [
+        "conversion",
+        "images",
+        "utilities"
+      ],
+      "license": "MIT",
+      "strict": false
+    },
+    {
       "name": "diagramming",
       "source": ".",
       "description": "Create professional Mermaid and DOT/Graphviz diagrams with semantic coloring, accessibility compliance, and secure image rendering",
       "version": "1.0.0",
       "author": {
         "name": "th3b0y"
+      },
+      "dependencies": {
+        "svg-to-png": "^1.0.0"
       },
       "keywords": [
         "diagrams",
@@ -46,7 +74,8 @@
         "name": "th3b0y"
       },
       "dependencies": {
-        "diagramming": "^1.0.0"
+        "diagramming": "^1.0.0",
+        "svg-to-png": "^1.0.0"
       },
       "keywords": [
         "markdown",

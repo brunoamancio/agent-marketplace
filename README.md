@@ -41,6 +41,8 @@ Professional diagram generation with Mermaid and DOT/Graphviz support.
 /plugin install diagramming@agent-marketplace
 ```
 
+*Also installs: `svg-to-png`*
+
 **Quick usage:**
 ```
 "Create a flowchart showing the user authentication process"
@@ -49,6 +51,41 @@ Professional diagram generation with Mermaid and DOT/Graphviz support.
 ```
 
 **Documentation:** [skills/diagramming/README.md](skills/diagramming/README.md)
+
+---
+
+### SVG to PNG
+
+Convert SVG files to high-quality PNG images using headless browser rendering.
+
+**Features:**
+- High-resolution output (2x device scale factor)
+- Automatic dimension detection from SVG viewBox
+- Security-hardened conversion with path validation
+- Batch processing for entire directories
+
+**Installation:**
+```bash
+/plugin install svg-to-png@agent-marketplace
+cd ~/.claude/skills/svg-to-png && npm install
+```
+
+**Quick usage:**
+```bash
+# Convert single file
+node ~/.claude/skills/svg-to-png/svg-to-png.js input.svg output.png
+
+# Convert all SVG files in directory
+node ~/.claude/skills/svg-to-png/svg-to-png.js ./images/
+```
+
+**Use cases:**
+- Convert Graphviz/DOT diagrams to PNG
+- Generate PNG images for markdown compatibility
+- Export diagrams for presentations and documentation
+- Create images for platforms that don't support SVG
+
+**Documentation:** [skills/svg-to-png/README.md](skills/svg-to-png/README.md)
 
 ---
 
@@ -66,6 +103,8 @@ Professional markdown editing with automatic diagram-to-image conversion.
 ```bash
 /plugin install markdown-editor@agent-marketplace
 ```
+
+*Also installs: `diagramming`, `svg-to-png`*
 
 **Quick usage:**
 ```

@@ -1,0 +1,24 @@
+{
+  "name": "@agent-marketplace/svg-to-png",
+  "version": "1.0.0",
+  "description": "Convert SVG files to PNG images using Puppeteer",
+  "main": "svg-to-png.js",
+  "bin": {
+    "svg-to-png": "./svg-to-png.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "svg",
+    "png",
+    "convert",
+    "image",
+    "puppeteer"
+  ],
+  "author": "th3b0y",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  }
+}

@@ -15,7 +15,7 @@ When images are needed in markdown files, generate diagrams and convert them to 
 ### Workflow
 
 1. **Create diagram** using Mermaid or Graphviz syntax
-2. **Render directly to PNG** using the diagramming skill's tools
+2. **Render directly to PNG** using the diagramming skill's tools (both Mermaid and Graphviz support PNG)
 3. **Insert PNG reference** into the markdown file
 4. **Clean up temporary files**
 
@@ -54,20 +54,49 @@ echo "digraph G {
     A -> B -> C;
 }" > temp.dot
 
-# Step 2: Render to SVG
-node ~/.claude/skills/diagramming/dot/render-dot.js temp.dot diagram.svg
+# Step 2: Render directly to PNG
+node ~/.claude/skills/diagramming/dot/render-dot.js temp.dot diagram.png
 
-# Step 3: Convert SVG to PNG
-node ~/.claude/skills/diagramming/mermaid/svg-to-png.js diagram.svg diagram.png
+# Step 3: Clean up
+rm temp.dot
 
-# Step 4: Clean up
-rm temp.dot diagram.svg
-
-# Step 5: Reference in markdown
+# Step 4: Reference in markdown
 # ![Diagram description](./diagram.png)
 ```
 
-**Note:** Graphviz renders to SVG only, so the SVG-to-PNG conversion step is still needed. Mermaid can render directly to PNG.
+**Note:** Both Mermaid and Graphviz can now render directly to PNG!
+
+### Generating SVG Images (When Explicitly Requested)
+
+While PNG is recommended for maximum compatibility, SVG can be used when explicitly requested by the user:
+
+**For Mermaid diagrams (SVG):**
+
+```bash
+# Render to SVG (default format)
+node ~/.claude/skills/diagramming/mermaid/render-mermaid.js diagram.mmd diagram.svg
+
+# Reference in markdown
+# ![Diagram description](./diagram.svg)
+```
+
+**For Graphviz/DOT diagrams (SVG):**
+
+```bash
+# Render to SVG (default format)
+node ~/.claude/skills/diagramming/dot/render-dot.js graph.dot graph.svg
+
+# Reference in markdown
+# ![Diagram description](./graph.svg)
+```
+
+**When to use SVG:**
+- User explicitly requests SVG format
+- Working on platforms with excellent SVG support (modern browsers)
+- Need vector graphics for scaling/zooming
+- File size is a concern (SVG is often smaller than PNG)
+
+**Note:** Always respect the user's explicit format request, even if PNG would be more compatible.
 
 ### Image Organization
 
