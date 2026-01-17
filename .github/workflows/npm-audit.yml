@@ -18,47 +18,29 @@ on:
   workflow_dispatch:
 
 jobs:
-  audit-diagramming-mermaid:
-    name: Audit - Diagramming (Mermaid)
+  audit-diagramming:
+    name: Audit - Diagramming
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install dependencies
+      - name: Audit Mermaid
         working-directory: skills/diagramming/mermaid
-        run: npm install
+        run: |
+          npm ci
+          npm audit --audit-level=moderate
 
-      - name: Run npm audit
-        working-directory: skills/diagramming/mermaid
-        run: npm audit --audit-level=moderate
-
-  audit-diagramming-dot:
-    name: Audit - Diagramming (DOT)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Install dependencies
+      - name: Audit DOT
         working-directory: skills/diagramming/dot
-        run: npm install
+        run: |
+          npm ci
+          npm audit --audit-level=moderate
 
-      - name: Run npm audit
-        working-directory: skills/diagramming/dot
-        run: npm audit --audit-level=moderate
-
-  audit-diagramming-markdown-export:
-    name: Audit - Diagramming (Markdown Export)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Install dependencies
+      - name: Audit Markdown Export
         working-directory: skills/diagramming/markdown-export
-        run: npm install
-
-      - name: Run npm audit
-        working-directory: skills/diagramming/markdown-export
-        run: npm audit --audit-level=moderate
+        run: |
+          npm ci
+          npm audit --audit-level=moderate
 
   audit-svg-to-png:
     name: Audit - SVG to PNG
@@ -68,7 +50,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: skills/svg-to-png
-        run: npm install
+        run: npm ci
 
       - name: Run npm audit
         working-directory: skills/svg-to-png
