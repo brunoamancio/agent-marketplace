@@ -5,10 +5,10 @@
   "author": {
     "name": "th3b0y"
   },
-  "homepage": "https://github.com/th3b0y/agent-marketplace",
+  "homepage": "https://github.com/brunoamancio/agent-marketplace",
   "repository": {
     "type": "git",
-    "url": "https://github.com/th3b0y/agent-marketplace.git"
+    "url": "https://github.com/brunoamancio/agent-marketplace.git"
   },
   "license": "MIT",
   "keywords": [

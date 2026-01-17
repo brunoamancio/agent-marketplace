@@ -4,6 +4,18 @@ Professional diagram generation using Mermaid and DOT/Graphviz with semantic col
 
 ## Installation
 
+### Via Marketplace (Recommended)
+
+```bash
+# Add the marketplace
+/plugin marketplace add brunoamancio/agent-marketplace
+
+# Install the diagramming skill
+/plugin install diagramming@agent-marketplace
+```
+
+### Manual Installation
+
 ```bash
 # Copy skill to Claude Code skills directory
 cp -r skills/diagramming ~/.claude/skills/
@@ -200,9 +212,52 @@ This skill is inspired by Kurt Cagle's approach to data visualization:
 - [Mermaid Live Editor](https://mermaid.live/)
 - [Graphviz Documentation](https://graphviz.org/documentation/)
 
+## Examples
+
+### Flowchart
+```mermaid
+flowchart LR
+    A[Start] --> B{Decision}
+    B -->|Yes| C[Process]
+    B -->|No| D[Skip]
+    C --> E[End]
+    D --> E
+```
+
+### Architecture Diagram
+```mermaid
+flowchart TB
+    subgraph "Frontend"
+        UI[Web UI]
+    end
+    subgraph "Backend"
+        API[API Gateway]
+        Auth[Auth Service]
+        Data[Data Service]
+    end
+    subgraph "Data Layer"
+        DB[(Database)]
+    end
+    UI --> API
+    API --> Auth
+    API --> Data
+    Data --> DB
+```
+
 ## Security
 
-All rendering tools have been hardened against common vulnerabilities. See [../../SECURITY.md](../../SECURITY.md) for:
+All rendering tools have been security-hardened with comprehensive fixes:
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| Command injection in md-to-pdf.js | 🔴 CRITICAL | ✅ Fixed |
+| Path traversal in all renderers | 🟡 HIGH | ✅ Fixed |
+| Resource exhaustion (Puppeteer) | 🟡 MEDIUM | ✅ Fixed |
+| CDN dependency (Mermaid) | 🟢 LOW | ✅ Fixed |
+
+**npm audit results:** 0 vulnerabilities across all tools.
+
+See [../../SECURITY.md](../../SECURITY.md) for detailed documentation on:
 
 - Security improvements and fixes
 - Vulnerability testing procedures

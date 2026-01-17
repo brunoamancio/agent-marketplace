@@ -10,7 +10,7 @@ The easiest way to install is through Claude Code's plugin marketplace system.
 
 In Claude Code, run:
 ```
-/plugin marketplace add th3b0y/agent-marketplace
+/plugin marketplace add brunoamancio/agent-marketplace
 ```
 
 Or if you have the repo locally:
@@ -63,7 +63,7 @@ If you prefer manual installation or want to develop/customize the skill:
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/th3b0y/agent-marketplace.git
+git clone https://github.com/brunoamancio/agent-marketplace.git
 cd agent-marketplace
 ```
 
@@ -109,7 +109,7 @@ In your team's shared `.claude/settings.json`:
     "agent-marketplace": {
       "source": {
         "source": "github",
-        "repo": "th3b0y/agent-marketplace"
+        "repo": "brunoamancio/agent-marketplace"
       }
     }
   },
