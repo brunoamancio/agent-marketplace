@@ -27,7 +27,9 @@ This marketplace provides high-quality, production-ready skills for Claude Code.
 Professional diagram generation with Mermaid and DOT/Graphviz support.
 
 [![Security](https://img.shields.io/badge/security-hardened-brightgreen)](SECURITY.md)
-[![Vulnerabilities](https://img.shields.io/badge/npm%20audit-0%20vulnerabilities-brightgreen)](SECURITY.md)
+[![NPM Audit - Mermaid](https://github.com/brunoamancio/agent-marketplace/actions/workflows/npm-audit.yml/badge.svg?job=audit-diagramming-mermaid)](https://github.com/brunoamancio/agent-marketplace/actions/workflows/npm-audit.yml)
+[![NPM Audit - DOT](https://github.com/brunoamancio/agent-marketplace/actions/workflows/npm-audit.yml/badge.svg?job=audit-diagramming-dot)](https://github.com/brunoamancio/agent-marketplace/actions/workflows/npm-audit.yml)
+[![NPM Audit - Markdown Export](https://github.com/brunoamancio/agent-marketplace/actions/workflows/npm-audit.yml/badge.svg?job=audit-diagramming-markdown-export)](https://github.com/brunoamancio/agent-marketplace/actions/workflows/npm-audit.yml)
 
 **Features:**
 - 20+ diagram types (flowcharts, sequence, class, ER, state, Gantt, architecture)
@@ -57,6 +59,8 @@ Professional diagram generation with Mermaid and DOT/Graphviz support.
 ### SVG to PNG
 
 Convert SVG files to high-quality PNG images using headless browser rendering.
+
+[![NPM Audit - SVG to PNG](https://github.com/brunoamancio/agent-marketplace/actions/workflows/npm-audit.yml/badge.svg?job=audit-svg-to-png)](https://github.com/brunoamancio/agent-marketplace/actions/workflows/npm-audit.yml)
 
 **Features:**
 - High-resolution output (2x device scale factor)

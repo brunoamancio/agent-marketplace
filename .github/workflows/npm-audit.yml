@@ -1,0 +1,75 @@
+name: NPM Security Audit
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'skills/**/package.json'
+      - 'skills/**/package-lock.json'
+      - '.github/workflows/npm-audit.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'skills/**/package.json'
+      - 'skills/**/package-lock.json'
+  schedule:
+    # Run weekly on Mondays at 9:00 UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  audit-diagramming-mermaid:
+    name: Audit - Diagramming (Mermaid)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install dependencies
+        working-directory: skills/diagramming/mermaid
+        run: npm ci
+
+      - name: Run npm audit
+        working-directory: skills/diagramming/mermaid
+        run: npm audit --audit-level=moderate
+
+  audit-diagramming-dot:
+    name: Audit - Diagramming (DOT)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install dependencies
+        working-directory: skills/diagramming/dot
+        run: npm ci
+
+      - name: Run npm audit
+        working-directory: skills/diagramming/dot
+        run: npm audit --audit-level=moderate
+
+  audit-diagramming-markdown-export:
+    name: Audit - Diagramming (Markdown Export)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install dependencies
+        working-directory: skills/diagramming/markdown-export
+        run: npm ci
+
+      - name: Run npm audit
+        working-directory: skills/diagramming/markdown-export
+        run: npm audit --audit-level=moderate
+
+  audit-svg-to-png:
+    name: Audit - SVG to PNG
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install dependencies
+        working-directory: skills/svg-to-png
+        run: npm ci
+
+      - name: Run npm audit
+        working-directory: skills/svg-to-png
+        run: npm audit --audit-level=moderate
