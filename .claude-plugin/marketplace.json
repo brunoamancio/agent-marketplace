@@ -36,6 +36,37 @@
       ],
       "license": "MIT",
       "strict": false
+    },
+    {
+      "name": "markdown-editor",
+      "source": ".",
+      "description": "Professional markdown editing with automatic diagram-to-image conversion, formatting enforcement, and accessibility improvements",
+      "version": "1.0.0",
+      "author": {
+        "name": "th3b0y"
+      },
+      "dependencies": {
+        "diagramming": "^1.0.0"
+      },
+      "keywords": [
+        "markdown",
+        "editor",
+        "formatting",
+        "diagrams",
+        "images",
+        "png",
+        "accessibility",
+        "documentation"
+      ],
+      "category": "productivity",
+      "tags": [
+        "markdown",
+        "editor",
+        "documentation",
+        "formatting"
+      ],
+      "license": "MIT",
+      "strict": false
     }
   ]
 }

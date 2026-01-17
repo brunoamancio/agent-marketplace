@@ -257,15 +257,17 @@ async function main() {
   const args = process.argv.slice(2);
 
   if (args.length < 1) {
-    console.log('Usage: render-mermaid.js <diagram-code-or-file> [output.svg] [--theme=<theme>]');
+    console.log('Usage: render-mermaid.js <diagram-code-or-file> [output.svg|output.png] [--theme=<theme>]');
     console.log('');
     console.log('Options:');
     console.log('  --theme=default|forest|dark|neutral');
     console.log('  --stdin    Read diagram from stdin');
+    console.log('  --format=svg|png    Output format (auto-detected from extension)');
     console.log('');
     console.log('Examples:');
     console.log('  render-mermaid.js diagram.mmd output.svg');
-    console.log('  echo "flowchart TD; A-->B" | render-mermaid.js --stdin output.svg');
+    console.log('  render-mermaid.js diagram.mmd output.png');
+    console.log('  echo "flowchart TD; A-->B" | render-mermaid.js --stdin output.png');
     process.exit(1);
   }
 
@@ -296,10 +298,14 @@ async function main() {
     outputPath = positional[0];
   } else {
     const inputPath = positional[0];
-    outputPath = positional[1] || inputPath.replace(/\.(mmd|mermaid)$/, '.svg');
+    outputPath = positional[1];
 
     try {
       diagramCode = await fs.readFile(inputPath, 'utf-8');
+      // Auto-generate output path if not provided
+      if (!outputPath) {
+        outputPath = inputPath.replace(/\.(mmd|mermaid)$/, '.svg');
+      }
     } catch (e) {
       // Treat as inline diagram code
       diagramCode = inputPath;
@@ -314,8 +320,17 @@ async function main() {
   console.error(`Rendering diagram to ${outputPath}...`);
 
   try {
-    const svg = await renderMermaidToSVG(diagramCode, { theme });
-    await saveSVG(svg, outputPath);
+    // Auto-detect format from file extension
+    const ext = path.extname(outputPath).toLowerCase();
+    const isPNG = ext === '.png';
+
+    if (isPNG) {
+      const pngBuffer = await renderMermaidToPNG(diagramCode, { theme });
+      await savePNG(pngBuffer, outputPath);
+    } else {
+      const svg = await renderMermaidToSVG(diagramCode, { theme });
+      await saveSVG(svg, outputPath);
+    }
     console.log(outputPath);
   } catch (err) {
     console.error('Error:', err.message);

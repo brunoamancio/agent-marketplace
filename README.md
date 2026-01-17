@@ -52,6 +52,38 @@ Professional diagram generation with Mermaid and DOT/Graphviz support.
 
 ---
 
+### Markdown Editor
+
+Professional markdown editing with automatic diagram-to-image conversion.
+
+**Features:**
+- Diagram-to-PNG conversion for maximum compatibility
+- Automatic markdown formatting enforcement
+- ASCII art replacement with proper diagrams
+- Hybrid approach: support both live diagrams and static images
+
+**Installation:**
+```bash
+/plugin install markdown-editor@agent-marketplace
+```
+
+**Quick usage:**
+```
+"Convert this markdown file's Mermaid diagrams to PNG images"
+"Fix markdown formatting and ensure proper blank lines"
+"Replace ASCII art diagrams with Mermaid equivalents"
+```
+
+**Use cases:**
+- Generate PNG images from diagrams for wikis and documentation
+- Export-ready markdown (PDF, presentations)
+- Maximum compatibility across all markdown renderers
+- Accessibility improvements with proper alt text
+
+**Documentation:** [skills/markdown-editor/README.md](skills/markdown-editor/README.md)
+
+---
+
 ## Manual Installation
 
 If you prefer to install skills manually:
