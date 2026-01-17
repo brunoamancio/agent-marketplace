@@ -2,6 +2,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 const { renderDotToSVG, saveOutput, LAYOUT_ENGINES } = require('./render-dot');
+const { validateOutputPath } = require('../lib/security');
 
 /**
  * Extract DOT code blocks from document content
@@ -154,13 +155,16 @@ async function processDocument(documentPath, options = {}) {
     verbose = false
   } = options;
 
-  const absolutePath = path.resolve(documentPath);
+  // Validate document path to prevent path traversal attacks
+  const absolutePath = validateOutputPath(path.resolve(documentPath), process.cwd());
   const docDir = path.dirname(absolutePath);
   const docName = path.basename(absolutePath, path.extname(absolutePath));
   const docExt = path.extname(absolutePath).toLowerCase();
 
   // Default output directory: diagrams/{document-name}/
-  const diagramDir = outputDir || path.join(docDir, 'diagrams', docName);
+  const diagramDir = outputDir
+    ? validateOutputPath(path.resolve(outputDir), process.cwd())
+    : path.join(docDir, 'diagrams', docName);
 
   if (verbose) {
     console.error(`Processing: ${absolutePath}`);
