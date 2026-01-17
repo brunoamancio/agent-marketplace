@@ -677,7 +677,7 @@ flowchart TB
 
 ## See Also
 
-- [11-CAGLE-COLOR-SYSTEM.md](./11-CAGLE-COLOR-SYSTEM.md) - Complete color reference
+- [09-STYLING-GUIDE.md](./09-STYLING-GUIDE.md) - Complete color reference and Cagle palette
 - [13-DATA-FLOW-PATTERNS-GUIDE.md](./13-DATA-FLOW-PATTERNS-GUIDE.md) - Sequence and flow diagrams
 - [14-DEPLOYMENT-ARCHITECTURE-GUIDE.md](./14-DEPLOYMENT-ARCHITECTURE-GUIDE.md) - Kubernetes and cloud patterns
-- [15-TECHNICAL-DESIGN-PATTERNS.md](./15-TECHNICAL-DESIGN-PATTERNS.md) - Combining diagram types
+- [15-TECHNICAL-DESIGN-PATTERNS-GUIDE.md](./15-TECHNICAL-DESIGN-PATTERNS-GUIDE.md) - Combining diagram types

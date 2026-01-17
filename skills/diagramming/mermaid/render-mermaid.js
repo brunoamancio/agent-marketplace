@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-const puppeteer = require('puppeteer');
 const fs = require('fs').promises;
 const path = require('path');
+const { validateOutputPath } = require('../lib/security');
+const { launchSecureBrowser, createSecurePage } = require('../lib/puppeteer-helper');
 
 /**
  * Renders a Mermaid diagram to SVG
@@ -17,14 +18,18 @@ async function renderMermaidToSVG(diagramCode, options = {}) {
     height = 1080
   } = options;
 
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
-  });
+  const browser = await launchSecureBrowser({ timeout: 30000 });
 
   try {
-    const page = await browser.newPage();
+    const page = await createSecurePage(browser, {
+      pageTimeout: 15000,
+      navTimeout: 30000
+    });
     await page.setViewport({ width, height });
+
+    // Load Mermaid from local package instead of CDN for security
+    const mermaidPath = require.resolve('mermaid/dist/mermaid.min.js');
+    const mermaidJs = await fs.readFile(mermaidPath, 'utf-8');
 
     const html = `
       <!DOCTYPE html>
@@ -50,12 +55,10 @@ async function renderMermaidToSVG(diagramCode, options = {}) {
 ${diagramCode}
         </pre>
 
-        <script type="module">
-          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-          import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0/dist/mermaid-layout-elk.esm.min.mjs';
-
-          mermaid.registerLayoutLoaders(elkLayouts);
-
+        <script>
+          ${mermaidJs}
+        </script>
+        <script>
           mermaid.initialize({
             startOnLoad: true,
             theme: '${theme}'
@@ -117,9 +120,12 @@ ${diagramCode}
  * Save SVG to file
  */
 async function saveSVG(svgContent, outputPath) {
-  await fs.mkdir(path.dirname(outputPath), { recursive: true });
-  await fs.writeFile(outputPath, svgContent, 'utf-8');
-  return outputPath;
+  // Validate output path to prevent path traversal attacks
+  const validatedPath = validateOutputPath(outputPath, process.cwd());
+
+  await fs.mkdir(path.dirname(validatedPath), { recursive: true });
+  await fs.writeFile(validatedPath, svgContent, 'utf-8');
+  return validatedPath;
 }
 
 /**
@@ -137,14 +143,18 @@ async function renderMermaidToPNG(diagramCode, options = {}) {
     scale = 4
   } = options;
 
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
-  });
+  const browser = await launchSecureBrowser({ timeout: 30000 });
 
   try {
-    const page = await browser.newPage();
+    const page = await createSecurePage(browser, {
+      pageTimeout: 15000,
+      navTimeout: 30000
+    });
     await page.setViewport({ width, height, deviceScaleFactor: scale });
+
+    // Load Mermaid from local package instead of CDN for security
+    const mermaidPath = require.resolve('mermaid/dist/mermaid.min.js');
+    const mermaidJs = await fs.readFile(mermaidPath, 'utf-8');
 
     const html = `
       <!DOCTYPE html>
@@ -170,12 +180,10 @@ async function renderMermaidToPNG(diagramCode, options = {}) {
 ${diagramCode}
         </pre>
 
-        <script type="module">
-          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-          import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0/dist/mermaid-layout-elk.esm.min.mjs';
-
-          mermaid.registerLayoutLoaders(elkLayouts);
-
+        <script>
+          ${mermaidJs}
+        </script>
+        <script>
           mermaid.initialize({
             startOnLoad: true,
             theme: '${theme}'
@@ -236,9 +244,12 @@ ${diagramCode}
  * Save PNG to file
  */
 async function savePNG(pngBuffer, outputPath) {
-  await fs.mkdir(path.dirname(outputPath), { recursive: true });
-  await fs.writeFile(outputPath, pngBuffer);
-  return outputPath;
+  // Validate output path to prevent path traversal attacks
+  const validatedPath = validateOutputPath(outputPath, process.cwd());
+
+  await fs.mkdir(path.dirname(validatedPath), { recursive: true });
+  await fs.writeFile(validatedPath, pngBuffer);
+  return validatedPath;
 }
 
 // CLI interface

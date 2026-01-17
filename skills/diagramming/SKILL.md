@@ -97,6 +97,28 @@ Match **most specific first**. Check in this order:
 
 ---
 
+## Exporting Diagrams to Images
+
+After creating diagrams in documents, export them to PNG/SVG for distribution:
+
+| Export What | Guide | Tools |
+|-------------|-------|-------|
+| Mermaid diagrams → PNG | 20-MERMAID-EXPORT.md | `mermaid/` tools |
+| DOT/Graphviz → SVG | 21-DOT-EXPORT.md | `dot/` tools |
+
+**Quick export:**
+```bash
+# Mermaid diagrams
+node mermaid/process-document.js document.md --verbose
+
+# DOT diagrams
+node dot/process-document.js document.md --verbose
+```
+
+See export guides for complete workflows, options, and troubleshooting.
+
+---
+
 ## Essential Configuration (Always Available)
 
 ### ELK Layout (Use for Complex Diagrams)

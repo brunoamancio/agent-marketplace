@@ -1,0 +1,41 @@
+{
+  "name": "diagramming-skills",
+  "owner": {
+    "name": "th3b0y"
+  },
+  "metadata": {
+    "description": "Professional diagramming skills with security-hardened rendering tools",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "diagramming",
+      "source": ".",
+      "description": "Create professional Mermaid and DOT/Graphviz diagrams with semantic coloring, accessibility compliance, and secure image rendering",
+      "version": "1.0.0",
+      "author": {
+        "name": "th3b0y"
+      },
+      "keywords": [
+        "diagrams",
+        "mermaid",
+        "graphviz",
+        "dot",
+        "visualization",
+        "architecture",
+        "flowchart",
+        "sequence-diagram",
+        "security"
+      ],
+      "category": "productivity",
+      "tags": [
+        "diagrams",
+        "visualization",
+        "documentation",
+        "architecture"
+      ],
+      "license": "MIT",
+      "strict": false
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "name": "diagramming",
+  "description": "Professional diagramming skill with Mermaid and DOT/Graphviz support, featuring semantic coloring (Cagle palette), WCAG AA accessibility compliance, and security-hardened rendering tools for PNG/SVG export",
+  "version": "1.0.0",
+  "author": {
+    "name": "th3b0y"
+  },
+  "homepage": "https://github.com/th3b0y/claude-config",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/th3b0y/claude-config.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "diagrams",
+    "mermaid",
+    "graphviz",
+    "dot",
+    "visualization",
+    "flowchart",
+    "sequence-diagram",
+    "class-diagram",
+    "state-diagram",
+    "er-diagram",
+    "gantt",
+    "architecture",
+    "security-hardened",
+    "accessibility",
+    "wcag",
+    "cagle-palette"
+  ],
+  "category": "productivity",
+  "metadata": {
+    "features": [
+      "20+ diagram types (Mermaid + DOT/Graphviz)",
+      "Security-hardened rendering tools (0 vulnerabilities)",
+      "Semantic color palette (WCAG AA compliant)",
+      "PNG/SVG export with document processing",
+      "ELK layout support for complex graphs",
+      "Accessibility-first design",
+      "Architecture & design pattern guides"
+    ],
+    "requirements": {
+      "node": ">=16.0.0",
+      "npm": ">=8.0.0"
+    },
+    "security": {
+      "hardened": true,
+      "fixes": [
+        "Command injection (RCE)",
+        "Path traversal attacks",
+        "Resource exhaustion (DoS)",
+        "CDN supply chain risks"
+      ],
+      "audit": "0 vulnerabilities (npm audit)"
+    }
+  }
+}
