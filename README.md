@@ -122,6 +122,30 @@ Professional markdown editing with automatic diagram-to-image conversion.
 
 ---
 
+### Xquik
+
+Plan Xquik REST API and remote MCP workflows for X data, exports, monitors, webhooks, and approval-gated X actions.
+
+**Features:**
+- REST API and MCP setup routing from current Xquik docs
+- OpenAPI and MCP manifest source links for endpoint validation
+- Explicit approval checkpoints for private reads, writes, monitors, webhooks, and extraction jobs
+- Output guidance for setup steps, endpoint choices, result bounds, and validation handoff
+
+**Installation:**
+```bash
+/plugin install xquik@agent-marketplace
+```
+
+**Quick usage:**
+```
+"Set up Xquik MCP for my coding assistant"
+"Plan a bounded X tweet search workflow with Xquik"
+"Choose the right Xquik path for follower exports"
+```
+
+---
+
 ## Manual Installation
 
 If you prefer to install skills manually:
