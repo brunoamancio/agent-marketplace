@@ -128,8 +128,8 @@ Team members will be prompted to install the marketplace and plugin when they st
 ## Requirements
 
 ### System Requirements
-- **Node.js:** >= 16.0.0
-- **npm:** >= 8.0.0
+- **Node.js:** >= 20.0.0
+- **npm:** >= 10.0.0
 - **Claude Code:** Latest version
 
 ### Optional (for DOT/Graphviz rendering)

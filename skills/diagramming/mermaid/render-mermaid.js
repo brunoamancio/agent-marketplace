@@ -80,7 +80,7 @@ ${diagramCode}
       </html>
     `;
 
-    await page.setContent(html, { waitUntil: 'networkidle0' });
+    await page.setContent(html, { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('svg', { timeout: 15000 });
     await page.evaluate(() => window.mermaidReady);
     await new Promise(r => setTimeout(r, 300));
@@ -205,7 +205,7 @@ ${diagramCode}
       </html>
     `;
 
-    await page.setContent(html, { waitUntil: 'networkidle0' });
+    await page.setContent(html, { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('svg', { timeout: 15000 });
     await page.evaluate(() => window.mermaidReady);
     await new Promise(r => setTimeout(r, 300));
