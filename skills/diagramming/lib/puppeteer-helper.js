@@ -1,4 +1,8 @@
-const puppeteer = require('puppeteer');
+const path = require('path');
+const { createRequire } = require('module');
+
+const requireFromMermaid = createRequire(path.join(__dirname, '../mermaid/package.json'));
+const puppeteer = requireFromMermaid('puppeteer');
 
 /**
  * Launches Puppeteer with security and resource limits

@@ -22,6 +22,28 @@ This marketplace provides high-quality, production-ready skills for Claude Code.
 
 ## Available Skills
 
+### Hermes Tweet
+
+Install and operate Hermes Tweet for Hermes Agent X/Twitter search, account reads, social listening, and gated account actions. Hermes Tweet v0.1.8 exposes 106 catalog-listed Xquik endpoints through 3 least-privilege tools.
+
+**Features:**
+- Native Hermes Agent plugin install guidance
+- Read-first tool flow with `tweet_explore` and `tweet_read`
+- Explicit action gating through `HERMES_TWEET_ENABLE_ACTIONS`
+- Safe runtime credential handling for local and remote gateway sessions
+- Native installation from GitHub or PyPI for Python 3.11+
+
+**Installation:**
+```bash
+/plugin install hermes-tweet@agent-marketplace
+```
+
+Then follow the skill's Hermes plugin install steps.
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
+
+---
+
 ### Diagramming
 
 Professional diagram generation with Mermaid and DOT/Graphviz support.

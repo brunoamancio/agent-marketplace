@@ -1,7 +1,7 @@
 {
   "name": "diagramming",
   "description": "Professional diagramming skill with Mermaid and DOT/Graphviz support, featuring semantic coloring (Cagle palette), WCAG AA accessibility compliance, and security-hardened rendering tools for PNG/SVG export",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "th3b0y"
   },
@@ -41,8 +41,8 @@
       "Architecture & design pattern guides"
     ],
     "requirements": {
-      "node": ">=16.0.0",
-      "npm": ">=8.0.0"
+      "node": ">=20.0.0",
+      "npm": ">=10.0.0"
     },
     "security": {
       "hardened": true,

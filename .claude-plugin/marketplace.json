@@ -5,9 +5,35 @@
   },
   "metadata": {
     "description": "Agent skills marketplace featuring professional tools and utilities",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "plugins": [
+    {
+      "name": "hermes-tweet",
+      "source": "./skills/hermes-tweet",
+      "description": "Install and operate Hermes Tweet for Hermes Agent X/Twitter search, account reads, social listening, and gated account actions",
+      "version": "0.1.8",
+      "author": {
+        "name": "Xquik"
+      },
+      "keywords": [
+        "hermes",
+        "xquik",
+        "twitter",
+        "x",
+        "social-media",
+        "automation"
+      ],
+      "category": "productivity",
+      "tags": [
+        "hermes-agent",
+        "twitter",
+        "x",
+        "social-media"
+      ],
+      "license": "MIT",
+      "strict": false
+    },
     {
       "name": "svg-to-png",
       "source": "./skills/svg-to-png",
@@ -37,7 +63,7 @@
       "name": "diagramming",
       "source": "./skills/diagramming",
       "description": "Create professional Mermaid and DOT/Graphviz diagrams with semantic coloring, accessibility compliance, and secure image rendering",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "th3b0y"
       },

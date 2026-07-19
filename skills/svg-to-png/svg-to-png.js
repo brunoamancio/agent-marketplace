@@ -30,7 +30,7 @@ async function convertSvgToPng(svgPath, pngPath) {
 
   const html = '<!DOCTYPE html><html><head><style>body { margin: 0; padding: 0; background: white; }</style></head><body>' + svgContent + '</body></html>';
 
-  await page.setContent(html, { waitUntil: 'networkidle0' });
+  await page.setContent(html, { waitUntil: 'domcontentloaded' });
   await page.screenshot({ path: validatedPngPath, fullPage: true });
   await browser.close();
 

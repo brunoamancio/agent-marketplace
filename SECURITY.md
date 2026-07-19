@@ -174,6 +174,12 @@ If you discover a security vulnerability in this fork, please:
 
 ## Security Audit History
 
+- **2026-07-18**: Refreshed transitive dependency locks after new advisories
+  - Resolved 17 Mermaid renderer audit findings
+  - Revalidated all 4 package locks with 0 vulnerabilities
+  - Fixed shared Puppeteer resolution for per-skill installs
+  - Removed unnecessary network-idle waits from inline SVG rendering
+
 - **2026-01-18**: Updated all dependencies to latest versions
   - Puppeteer: ^24.35.0
   - Mermaid: ^11.12.2
